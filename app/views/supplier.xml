@@ -1,0 +1,7 @@
+<Alloy>
+  <Window id="supplier_window" title="Supplier List">
+	  <TableView id="supplier_table" backgroundImage="page3_750x1334-emboss.png">
+		  <TableViewRow id="supplier_row" backgroundColor="transparent" opacity="0" Title="supplier"/>
+	  </TableView>
+  </Window>
+</Alloy>

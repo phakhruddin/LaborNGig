@@ -1,0 +1,12 @@
+<Alloy>
+  <Window id="schedule_window" title="Calendar">
+	  <TableView id="table" backgroundImage="page3_750x1334-emboss.png">
+		  <TableViewRow id="events" backgroundColor="transparent" opacity="0" Title="events">
+		   		  <Label id="label_events" color="orange" top="5" left="50" text="Check Events >"/>
+		  </TableViewRow>
+		  <TableViewRow id="createevent" backgroundColor="transparent" opacity="0" Title="createevent">
+		   		  <Label id="label_createevent" color="orange" top="5" left="50" text="Create Event >"/>
+		  </TableViewRow>
+	  </TableView>
+  </Window>
+</Alloy>

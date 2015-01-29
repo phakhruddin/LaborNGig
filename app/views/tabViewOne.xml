@@ -1,0 +1,26 @@
+<Alloy>
+  <Tab id="tab_one" title="MAIN">
+    <Window title="Labor&Gig" class='container'>
+      <TableView id="table" backgroundImage="page3_750x1334-emboss.png">
+ 	      <TableViewRow id="schedule" backgroundColor="transparent" opacity="0" Title="location">
+		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
+		   </TableViewRow>
+	      <TableViewRow id="location" backgroundColor="transparent" Title="location">
+		   		  <Label id="label_location" color="green" top="5" left="50" text="Where is the labor today? >"/>
+		   </TableViewRow>
+		   <TableViewRow id="project" backgroundColor="transparent" Title="project">
+		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>
+		   </TableViewRow>
+		   <TableViewRow id="client" backgroundColor="transparent" Title="clients">
+		   		  <Label id="label_clients" color="blue" top="5" left="50" text="Clients >"/>
+		   </TableViewRow>
+		   <TableViewRow id="invoice" backgroundColor="transparent" Title="invoice">
+		   		  <Label id="label_invoice" color="green" top="5" left="50" text="Invoice >"/>
+		   </TableViewRow>
+		   <TableViewRow id="supplier" backgroundColor="transparent" Title="supplier">
+		   		  <Label id="label_supplier" color="orange" top="5" left="50" text="Supplier >"/>
+		   </TableViewRow>
+	   </TableView>
+    </Window>
+  </Tab>
+</Alloy>

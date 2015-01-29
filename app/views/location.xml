@@ -1,0 +1,14 @@
+<Alloy>
+ <Tab id="tab_two" title="LOC">
+  <Window id="location_window" title="Location">
+	  <TableView id="location_table" backgroundImage="page3_750x1334-emboss.png">
+		  <TableViewRow id="updateloc" backgroundColor="transparent" opacity="0" Title="updateloc">
+		   		  <Label id="label_updateloc" color="green" top="5" left="50" text="Update Your Location >"/>
+		  </TableViewRow>
+		  <TableViewRow id="checkloc" backgroundColor="transparent" opacity="0" Title="checkloc">
+		   		  <Label id="label_checkloc" color="green" top="5" left="50" text="Check Field Tech Location >"/>
+		  </TableViewRow>
+	  </TableView>
+  </Window>
+ </Tab>
+</Alloy>

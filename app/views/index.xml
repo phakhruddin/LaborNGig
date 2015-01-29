@@ -1,0 +1,7 @@
+<Alloy>
+  <Collection src="client"/>
+  <TabGroup>
+    <Require src="tabViewOne"/>
+    <Require src="location"/>    
+  </TabGroup>
+</Alloy>

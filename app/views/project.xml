@@ -1,0 +1,7 @@
+<Alloy>
+  <Window id="project_window" title="Project List">
+	  <TableView id="project_table" backgroundImage="page3_750x1334-emboss.png">
+		  <TableViewRow id="project_row" backgroundColor="transparent" opacity="0" Title="project"/>
+	  </TableView>
+  </Window>
+</Alloy>

@@ -1,0 +1,7 @@
+<Alloy>
+  <Window id="client_window" title="Client List">
+	  <TableView id="client_table" backgroundImage="page3_750x1334-emboss.png">
+		  <TableViewRow id="client_row" backgroundColor="transparent" opacity="0" Title="client"/>
+	  </TableView>
+  </Window>
+</Alloy>
