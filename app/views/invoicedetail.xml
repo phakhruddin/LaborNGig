@@ -1,0 +1,51 @@
+<Alloy>
+	<Model src="dummy" />
+  <Window id="invoicedetail_window" title="invoice Detail" backgroundImage="page3_750x1334-emboss.png" backgroundColor="transparent">
+	  <TableView id="invoicedetail_table"  backgroundColor="transparent">
+	  	<TableViewSection headerTitle="invoiceDetails">
+		  <TableViewRow id="invoicenumber_row" Title="invoicenumber">
+		  	  <Label id="invoicenumber" text="{dummy.invoicenumber}" />
+		  </TableViewRow>
+		  <TableViewRow id="fullname_row" Title="fullname">
+	   		  <Label id="fullname" text="{dummy.fullname}" />
+	   	  </TableViewRow>
+		  <TableViewRow id="customernumber_row" Title="customernumber">
+	   		  <Label id="customernumber" text="{dummy.customernumber}" />
+	   	  </TableViewRow>
+	   	  <TableViewRow id="phone_row" Title="phone">
+	   		  <Label id="phone" text="{dummy.phone}" />
+	   	  </TableViewRow>
+	   	  <TableViewRow id="emailinvoicedetail_row" Title="emailinvoiceDetail">
+	   		  <Label id="email" text="{dummy.email}" />
+	   	  </TableViewRow>
+	  </TableViewSection>
+	  <TableViewSection headerTitle="Pending Invoice">
+	  	  <TableViewRow id="total_row" Title="total">
+	   		  <Label id="total" text="{dummy.total}" />
+		  </TableViewRow>
+		  <TableViewRow id="balance_row" Title="balance">
+	   		  <Label id="balance" text="{dummy.balance}" />
+		  </TableViewRow>
+		  <TableViewRow id="paid_row" Title="paid">
+	   		  <Label id="paid" text="{dummy.paid}" />
+		  </TableViewRow>
+	  </TableViewSection>
+	  <TableViewSection headerTitle="Action">
+	  	  <TableViewRow id="duedate_row" Title="duedate">
+	   		  <Label id="duedate" text="{dummy.duedate}" />
+		  </TableViewRow>
+		  <TableViewRow id="lastpaiddate_row" Title="lastpaiddate">
+	   		  <Label id="lastpaiddate" text="{dummy.lastpaiddate}" />
+		  </TableViewRow>
+		  <TableViewRow id="followupdate_row" Title="followupdate">
+	   		  <Label id="followupdate" text="{dummy.followupdate}" />
+		  </TableViewRow>
+	  </TableViewSection>
+	  <TableViewSection headerTitle="Notes">
+		  <TableViewRow id="notesdetail_row" Title="notesDetail">
+	   		  <Label id="notes" text="{dummy.notes}" />
+		  </TableViewRow>
+	  </TableViewSection>
+	  </TableView>
+  </Window>
+</Alloy>

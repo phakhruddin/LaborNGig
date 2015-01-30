@@ -13,7 +13,6 @@ $.project_window.addEventListener("click", function(e){
 			title: title
 		});
 		clientController.openMainWindow($.tab_project);
-		//Alloy.Globals.createController('clientdetail','tab_client')
 });
 
 

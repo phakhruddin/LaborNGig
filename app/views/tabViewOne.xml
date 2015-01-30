@@ -1,8 +1,9 @@
 <Alloy>
   <Collection src="project"/>
   <Collection src="client"/>
+  <Collection src="invoice"/>
   <Tab id="tab_one" title="MAIN">
-    <Window title="Labor&Gig" backgroundImage="lngembossi6page2.png" class='container'>
+    <Window title="Labor&Gig" backgroundImage="lngembossi6page3.png" class='container'>
       <TableView id="table" backgroundColor="transparent"  >
  	      <TableViewRow id="schedule" opacity="0" Title="location">
 		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
@@ -14,13 +15,16 @@
 		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>
 		   </TableViewRow>
 		   <TableViewRow id="client" backgroundColor="transparent" Title="clients">
-		   		  <Label id="label_clients" color="blue" top="5" left="50" text="Clients >"/>
+		   		  <Label id="label_clients" color="gray" top="5" left="50" text="Clients >"/>
 		   </TableViewRow>
 		   <TableViewRow id="invoice" backgroundColor="transparent" Title="invoice">
 		   		  <Label id="label_invoice" color="green" top="5" left="50" text="Invoice >"/>
 		   </TableViewRow>
 		   <TableViewRow id="supplier" backgroundColor="transparent" Title="supplier">
 		   		  <Label id="label_supplier" color="orange" top="5" left="50" text="Supplier >"/>
+		   </TableViewRow>
+		   <TableViewRow id="inventory" backgroundColor="transparent" Title="inventory">
+		   		  <Label id="label_inventory" color="white" top="5" left="50" text="Inventory >"/>
 		   </TableViewRow>
 	   </TableView>
     </Window>
