@@ -1,4 +1,5 @@
 <Alloy>
+  <Collection src="client"/>
   <Tab id="tab_one" title="MAIN">
     <Window title="Labor&Gig" class='container'>
       <TableView id="table" backgroundImage="page3_750x1334-emboss.png">

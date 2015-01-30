@@ -1,10 +1,30 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.client_window);
-  Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
+  Ti.API.info("This is child widow client.js" +JSON.stringify(_tab));
 //  	var activity = $.index.getActivity();
 //	activity.invalidateOptionsMenu(); //force reload of menus	
-	Alloy.Globals.getData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w');
+	$.client_table.search = $.search_history;
+	Alloy.Collections.client.fetch();	
 };
+
+$.client_window.addEventListener("click", function(e){
+		Alloy.Globals.openDetail(e);
+		var title = e.row.title;
+		var clientController = Alloy.createController('clientdetail',{
+			title: title
+		});
+		clientController.openMainWindow($.tab_client);
+		//Alloy.Globals.createController('clientdetail','tab_client')
+});
+
+function transformFunction(model) {
+	var transform = model.toJSON();
+	console.log("transform is ::" +JSON.stringify(transform));
+	transform.title = transform.name+":"+transform.firstname+":"+transform.lastname+":"+transform.company+":"+transform.phone+":"+transform.email+":"+transform.address+":"+transform.data1+":"+transform.data2;
+	transform.custom = transform.name+" ( "+transform.firstname+"  "+transform.lastname+" ) ";
+	return transform;
+}
+
 
 function menuItemLogout_click() {
 		googleAuth.deAuthorize();

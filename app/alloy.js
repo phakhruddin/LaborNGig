@@ -149,7 +149,7 @@ Alloy.Globals.openDetail = function(e){
 	Ti.API.info("in open_button click event title :"+e.row.Title);
 };
 
-Alloy.Globals.getData = function(sid) {	
+Alloy.Globals.getData = function(sid,type) {	
 	var url = "https://spreadsheets.google.com/feeds/list/"+sid+"/od6/public/basic?hl=en_US&alt=json";
 	var thefile = "gss"+sid+".txt";
 	var xhr = Ti.Network.createHTTPClient({
@@ -168,7 +168,7 @@ Alloy.Globals.getData = function(sid) {
 			file.write(this.responseText);
 			Alloy.Collections.client.deleteAll();
 			for (var i=0; i < +json.feed.entry.length; i++) {
-				var dataModel = Alloy.createModel("client",{
+				var dataModel = Alloy.createModel(type,{
 					name :  json.feed.entry[i].title.$t || "none",
 					firstname : json.feed.entry[0].content.$t.split(',')[0].split(':')[1] || "none",
 					lastname : json.feed.entry[0].content.$t.split(',')[1].split(':')[1] || "none",
@@ -199,5 +199,10 @@ Alloy.Globals.getData = function(sid) {
 	};
 	xhr.open("GET", url);
 	xhr.send();
-	alert(" Data were successfuly downloaded from "+url+". Please proceed.");
+	Ti.API.info(" Data were successfuly downloaded from "+url+". Please proceed.");
+};
+
+Alloy.Globals.createController = function(controller,sourcetab){
+		var newController = Alloy.createController(controller);
+		newController.openMainWindow('$.'+sourcetab);
 };
