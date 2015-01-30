@@ -15,16 +15,22 @@
 		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>
 		   </TableViewRow>
 		   <TableViewRow id="client" backgroundColor="transparent" Title="clients">
-		   		  <Label id="label_clients" color="gray" top="5" left="50" text="Clients >"/>
+		   		  <Label id="label_clients" color="#228B22" top="5" left="50" text="Clients >"/>
 		   </TableViewRow>
 		   <TableViewRow id="invoice" backgroundColor="transparent" Title="invoice">
-		   		  <Label id="label_invoice" color="green" top="5" left="50" text="Invoice >"/>
+		   		  <Label id="label_invoice" color="#008080" top="5" left="50" text="Invoice >"/>
 		   </TableViewRow>
 		   <TableViewRow id="supplier" backgroundColor="transparent" Title="supplier">
-		   		  <Label id="label_supplier" color="orange" top="5" left="50" text="Supplier >"/>
+		   		  <Label id="label_supplier" color="#FFDEAD" top="5" left="50" text="Supplier >"/>
 		   </TableViewRow>
 		   <TableViewRow id="inventory" backgroundColor="transparent" Title="inventory">
 		   		  <Label id="label_inventory" color="white" top="5" left="50" text="Inventory >"/>
+		   </TableViewRow>
+		   <TableViewRow id="proposal" backgroundColor="transparent" Title="proposal">
+		   		  <Label id="label_proposal" color="#FAFAD2" top="5" left="50" text="Proposal >"/>
+		   </TableViewRow>
+		   <TableViewRow id="report" backgroundColor="transparent" Title="report">
+		   		  <Label id="label_report" color="#B0E0E6" top="5" left="50" text="Report >"/>
 		   </TableViewRow>
 	   </TableView>
     </Window>

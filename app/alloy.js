@@ -169,6 +169,10 @@ Alloy.Globals.getData = function(sid,type) {
 			file.write(this.responseText);
 			(type == 'client') && Alloy.Collections.client.deleteAll();
 			(type == 'project') && Alloy.Collections.project.deleteAll();
+			(type == 'inventory') && Alloy.Collections.inventory.deleteAll();
+			(type == 'invoice') && Alloy.Collections.invoice.deleteAll();
+			(type == 'supplier') && Alloy.Collections.supplier.deleteAll();
+			(type == 'proposal') && Alloy.Collections.proposal.deleteAll();
 			for (var i=0; i < +json.feed.entry.length; i++) {
 				var dataModel = Alloy.createModel(type,{
 					col1 :  json.feed.entry[i].title.$t || "none",

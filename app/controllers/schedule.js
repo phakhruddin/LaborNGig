@@ -332,7 +332,7 @@ exports.openMainWindow = function(_tab) {
 	
 	if(Ti.Platform.osname == 'android'){
 			var win = Ti.UI.createWindow({
-	                        backgroundColor: 'white',
+	                        backgroundColor: 'transparent',
 	                        title: 'Calendar'
 	            });
 	   	} else {

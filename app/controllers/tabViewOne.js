@@ -50,3 +50,10 @@ $.inventory.addEventListener ("click", function(e){
   	var tabViewOneChildController = Alloy.createController("inventory");
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });
+
+$.proposal.addEventListener ("click", function(e){
+	Alloy.Globals.openDetail(e);
+	Alloy.Globals.getData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
+  	var tabViewOneChildController = Alloy.createController("proposal");
+  	tabViewOneChildController.openMainWindow($.tab_one);	
+});
