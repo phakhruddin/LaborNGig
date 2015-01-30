@@ -2,10 +2,10 @@
   <Window id="schedule_window" backgroundImage="page3_750x1334-emboss.png" title="Calendar">
 	  <TableView id="table" backgroundColor="transparent" >
 		  <TableViewRow id="events" backgroundColor="transparent" opacity="0" Title="events">
-		   		  <Label id="label_events" color="#32CD32" top="5" left="50" text="Check Events >"/>
+		   		  <Label id="label_events" color="orange" top="5" left="50" text="Check Events >"/>
 		  </TableViewRow>
 		  <TableViewRow id="createevent" backgroundColor="transparent" opacity="0" Title="createevent">
-		   		  <Label id="label_createevent" color="#32CD32" top="5" left="50" text="Create Event >"/>
+		   		  <Label id="label_createevent" color="orange" top="5" left="50" text="Create Event >"/>
 		  </TableViewRow>
 	  </TableView>
   </Window>

@@ -43,3 +43,10 @@ $.supplier.addEventListener ("click", function(e){
 	var scheduleController = Alloy.createController("supplier");
 	scheduleController.openMainWindow($.tab_one);	
 });
+
+$.inventory.addEventListener ("click", function(e){
+	Alloy.Globals.openDetail(e);
+	Alloy.Globals.getData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
+  	var tabViewOneChildController = Alloy.createController("inventory");
+  	tabViewOneChildController.openMainWindow($.tab_one);	
+});
