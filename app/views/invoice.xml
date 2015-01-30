@@ -1,7 +1,7 @@
 <Alloy>
-  <Window id="invoice_window" title="Invoice List">
-	  <TableView id="invoice_table" backgroundImage="page3_750x1334-emboss.png">
-		  <TableViewRow id="invoice_row" backgroundColor="transparent" opacity="0" Title="invoice"/>
+  <Window id="invoice_window" backgroundImage="page3_750x1334-emboss.png"  title="Invoice List">
+	  <TableView id="invoice_table" backgroundColor="transparent" >
+		  <TableViewRow id="invoice_row"  backgroundColor="transparent" opacity="0" Title="invoice"/>
 	  </TableView>
   </Window>
 </Alloy>

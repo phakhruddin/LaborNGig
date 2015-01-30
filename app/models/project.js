@@ -20,7 +20,7 @@ exports.definition = {
 		},
 		adapter: {
 			type: "sql",
-			collection_name: "client"
+			collection_name: "project"
 		}
 	},
 	extendModel: function(Model) {
@@ -46,11 +46,11 @@ exports.definition = {
 				 
 				},
 				
-			deleteName : function(name) {
+			deleteCol1 : function(col1) {
  
 				var collection = this;
 				 
-				var sql = "DELETE FROM " + collection.config.adapter.collection_name +" WHERE name=\""+name+"\"";
+				var sql = "DELETE FROM " + collection.config.adapter.collection_name +" WHERE col1=\""+col1+"\"";
 				db = Ti.Database.open(collection.config.adapter.db_name);
 				db.execute(sql);
 				db.close();

@@ -13,6 +13,7 @@ $.location.addEventListener ("click", function(e){
 
 $.project.addEventListener ("click", function(e){
 	openDetail(e);
+	Alloy.Globals.getData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
   	var tabViewOneChildController = Alloy.createController("project");
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });

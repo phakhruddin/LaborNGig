@@ -1,7 +1,7 @@
 <Alloy>
 	<Model src="dummy" />
-  <Window id="clientdetail_window" title="Client Detail">
-	  <TableView id="clientdetail_table" backgroundColor="black" >
+  <Window id="clientdetail_window" title="Client Detail" backgroundImage="lngembossi6page4.png" backgroundColor="transparent">
+	  <TableView id="clientdetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="ContactDetails">
 		  <TableViewRow id="clientdetail_row" Title="ClientDetail">
 		  	  <Label id="FullName" text="{dummy.fullname}" />
@@ -27,6 +27,11 @@
 	  <TableViewSection headerTitle="Pending Project">
 		  <TableViewRow id="projectclientdetail_row" Title="projectClientDetail">
 	   		  <Label id="project" text="{dummy.project}" />
+		  </TableViewRow>
+	  </TableViewSection>
+	  <TableViewSection headerTitle="Pending Proposal">
+		  <TableViewRow id="proposalclientdetail_row" Title="proposalClientDetail">
+	   		  <Label id="proposal" text="{dummy.proposal}" />
 		  </TableViewRow>
 	  </TableViewSection>
 	  </TableView>

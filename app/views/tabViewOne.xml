@@ -1,9 +1,10 @@
 <Alloy>
+  <Collection src="project"/>
   <Collection src="client"/>
   <Tab id="tab_one" title="MAIN">
-    <Window title="Labor&Gig" class='container'>
-      <TableView id="table" backgroundImage="page3_750x1334-emboss.png">
- 	      <TableViewRow id="schedule" backgroundColor="transparent" opacity="0" Title="location">
+    <Window title="Labor&Gig" backgroundImage="lngembossi6page2.png" class='container'>
+      <TableView id="table" backgroundColor="transparent"  >
+ 	      <TableViewRow id="schedule" opacity="0" Title="location">
 		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
 		   </TableViewRow>
 	      <TableViewRow id="location" backgroundColor="transparent" Title="location">

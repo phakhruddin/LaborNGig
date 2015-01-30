@@ -166,25 +166,26 @@ Alloy.Globals.getData = function(sid,type) {
 			    Ti.API.info((success==true) ? 'success' : 'fail'); // outputs 'success'
 			}
 			file.write(this.responseText);
-			Alloy.Collections.client.deleteAll();
+			(type == 'client') && Alloy.Collections.client.deleteAll();
+			(type == 'project') && Alloy.Collections.project.deleteAll();
 			for (var i=0; i < +json.feed.entry.length; i++) {
 				var dataModel = Alloy.createModel(type,{
-					name :  json.feed.entry[i].title.$t || "none",
-					firstname : json.feed.entry[0].content.$t.split(',')[0].split(':')[1] || "none",
-					lastname : json.feed.entry[0].content.$t.split(',')[1].split(':')[1] || "none",
-					company : json.feed.entry[0].content.$t.replace(/.*company:/g,"").replace(/, phone:.*/,"") || "none",
-					phone : json.feed.entry[0].content.$t.split(',')[3].split(':')[1] || "none",
-					email : json.feed.entry[0].content.$t.split(',')[4].split(':')[1] || "none",
-					address : json.feed.entry[0].content.$t.replace(/.*address:/g,"").replace(/, data1:.*/,"") || "none",
-					data1 : json.feed.entry[0].content.$t.split(',')[6].split(':')[1] || "none",
-					data2 : json.feed.entry[0].content.$t.split(',')[7].split(':')[1] || "none",
-					data3 :  json.feed.entry[0].content.$t.split(',')[8].split(':')[1] || "none",
-					data4 : json.feed.entry[0].content.$t.split(',')[9].split(':')[1] || "none",
-					data5 :  "none",
-					data6 :  "none",
-					data7 :  "none",
-					data8 :  "none",
-					data9 :  "none"				
+					col1 :  json.feed.entry[i].title.$t || "none",
+					col2 : json.feed.entry[i].content.$t.split(',')[0] && json.feed.entry[i].content.$t.split(',')[0].split(':')[1] || "none",
+					col3 : json.feed.entry[i].content.$t.split(',')[1] && json.feed.entry[i].content.$t.split(',')[1].split(':')[1] || "none",
+					col4 : json.feed.entry[i].content.$t.split(',')[2] && json.feed.entry[i].content.$t.split(',')[2].split(':')[1] || "none",
+					col5 : json.feed.entry[i].content.$t.split(',')[3] && json.feed.entry[i].content.$t.split(',')[3].split(':')[1] || "none",
+					col6 : json.feed.entry[i].content.$t.split(',')[4] && json.feed.entry[i].content.$t.split(',')[4].split(':')[1] || "none",
+					col7 : json.feed.entry[i].content.$t.split(',')[5] && json.feed.entry[i].content.$t.split(',')[5].split(':')[1] || "none",
+					col8 : json.feed.entry[i].content.$t.split(',')[6] && json.feed.entry[i].content.$t.split(',')[6].split(':')[1] || "none",
+					col9 : json.feed.entry[i].content.$t.split(',')[7] && json.feed.entry[i].content.$t.split(',')[7].split(':')[1] || "none",
+					col10 :  json.feed.entry[i].content.$t.split(',')[8] && json.feed.entry[i].content.$t.split(',')[8].split(':')[1] || "none",
+					col11 : json.feed.entry[i].content.$t.split(',')[9] && json.feed.entry[i].content.$t.split(',')[9].split(':')[1] || "none",
+					col12 :  json.feed.entry[i].content.$t.split(',')[10] && json.feed.entry[i].content.$t.split(',')[10].split(':')[1] || "none",
+					col13 :  json.feed.entry[i].content.$t.split(',')[11] && json.feed.entry[i].content.$t.split(',')[11].split(':')[1] || "none",
+					col14 :  json.feed.entry[i].content.$t.split(',')[12] && json.feed.entry[i].content.$t.split(',')[12].split(':')[1] || "none",
+					col15 :  json.feed.entry[i].content.$t.split(',')[13] && json.feed.entry[i].content.$t.split(',')[13].split(':')[1] || "none",
+					col16 :  json.feed.entry[i].content.$t.split(',')[13] && json.feed.entry[i].content.$t.split(',')[13].split(':')[1] || "none",		
 				});			
 				dataModel.save();
 			}
