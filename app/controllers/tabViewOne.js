@@ -1,10 +1,4 @@
 
-function openDetail(e) {
-	Ti.API.info('index = ' + JSON.stringify(e.index));
-	Ti.API.info("in open_button click event title :"+e.row.Title);
-}
-
-
 $.location.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
   	var tabViewOneChildController = Alloy.createController("location");
@@ -56,4 +50,10 @@ $.proposal.addEventListener ("click", function(e){
 	Alloy.Globals.getData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
   	var tabViewOneChildController = Alloy.createController("proposal");
   	tabViewOneChildController.openMainWindow($.tab_one);	
+});
+
+$.google.addEventListener ("click", function(e){
+	Alloy.Globals.openDetail(e);
+	var tabViewOneController = Alloy.createController("google");
+	tabViewOneController.openMainWindow($.tab_one);	
 });

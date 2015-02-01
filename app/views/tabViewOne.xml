@@ -32,6 +32,7 @@
 		   <TableViewRow id="report" backgroundColor="transparent" Title="report">
 		   		  <Label id="label_report" color="#B0E0E6" top="5" left="50" text="Report >"/>
 		   </TableViewRow>
+		   <TableViewRow id="google" Title="google"/>
 	   </TableView>
     </Window>
   </Tab>

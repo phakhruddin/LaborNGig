@@ -30,8 +30,8 @@ Alloy.Globals.GoogleAuth_module = require('googleAuth');
 
 Alloy.Globals.googleAuth = new Alloy.Globals.GoogleAuth_module({
 	//clientId : '219575370718-u3vb42f04899h02es4mj4uh34otgr5pe.apps.googleusercontent.com',
-	clientId : '761394311941.apps.googleusercontent.com',
-	clientSecret : 'KEKKU3--QVk849MHtmAJTToU',
+	clientId : '693726333078-uncq4tte4lo9vfbhl6569d3uduvnn8fd.apps.googleusercontent.com',
+	clientSecret : 'CrWBzHVXAWykCWJwDT1EY-1I',
 	propertyName : 'googleToken',
 	quiet: false,
 	scope : [ 'https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly' ]
@@ -211,4 +211,42 @@ Alloy.Globals.getData = function(sid,type) {
 Alloy.Globals.createController = function(controller,sourcetab){
 		var newController = Alloy.createController(controller);
 		newController.openMainWindow('$.'+sourcetab);
+};
+
+
+Alloy.Globals.xmlToJson = function(xml) {	
+	// Create the return object
+	var obj = {};
+
+	if (xml.nodeType == 1) { // element
+		// do attributes
+		if (xml.attributes.length > 0) {
+		obj["@attributes"] = {};
+			for (var j = 0; j < xml.attributes.length; j++) {
+				var attribute = xml.attributes.item(j);
+				obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+			}
+		}
+	} else if (xml.nodeType == 3) { // text
+		obj = xml.nodeValue;
+	}
+
+	// do children
+	if (xml.hasChildNodes()) {
+		for(var i = 0; i < xml.childNodes.length; i++) {
+			var item = xml.childNodes.item(i);
+			var nodeName = item.nodeName;
+			if (typeof(obj[nodeName]) == "undefined") {
+				obj[nodeName] = xmlToJson(item);
+			} else {
+				if (typeof(obj[nodeName].push) == "undefined") {
+					var old = obj[nodeName];
+					obj[nodeName] = [];
+					obj[nodeName].push(old);
+				}
+				obj[nodeName].push(xmlToJson(item));
+			}
+		}
+	}
+	return obj;
 };
