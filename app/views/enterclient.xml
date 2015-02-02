@@ -1,0 +1,7 @@
+gsx:address<Alloy>
+  <Window id="enterclient_window" backgroundImage="lngembossi6page4.png" title="enterclient List">
+	  <TableView id="enterclient_table" backgroundColor="transparent" >
+		  <TableViewRow id="enterclient_row" backgroundColor="transparent" opacity="0" Title="enterclient"/>
+	  </TableView>
+  </Window>
+</Alloy>

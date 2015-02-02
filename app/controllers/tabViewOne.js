@@ -52,6 +52,12 @@ $.proposal.addEventListener ("click", function(e){
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });
 
+$.enterdata.addEventListener ("click", function(e){
+	Alloy.Globals.openDetail(e);
+	var tabViewOneController = Alloy.createController("enterdata");
+	tabViewOneController.openMainWindow($.tab_one);	
+});
+
 $.google.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
 	var tabViewOneController = Alloy.createController("google");

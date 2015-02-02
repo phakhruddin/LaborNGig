@@ -8,29 +8,32 @@
  	      <TableViewRow id="schedule" opacity="0" Title="location">
 		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
 		   </TableViewRow>
-	      <TableViewRow id="location" backgroundColor="transparent" Title="location">
+	      <TableViewRow id="location" backgroundColor="transparent" Title="Location">
 		   		  <Label id="label_location" color="green" top="5" left="50" text="Where is the labor today? >"/>
 		   </TableViewRow>
-		   <TableViewRow id="project" backgroundColor="transparent" Title="project">
+		   <TableViewRow id="project" backgroundColor="transparent" Title="Project">
 		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>
 		   </TableViewRow>
-		   <TableViewRow id="client" backgroundColor="transparent" Title="clients">
+		   <TableViewRow id="client" backgroundColor="transparent" Title="Clients">
 		   		  <Label id="label_clients" color="#228B22" top="5" left="50" text="Clients >"/>
 		   </TableViewRow>
-		   <TableViewRow id="invoice" backgroundColor="transparent" Title="invoice">
+		   <TableViewRow id="invoice" backgroundColor="transparent" Title="Invoice">
 		   		  <Label id="label_invoice" color="#008080" top="5" left="50" text="Invoice >"/>
 		   </TableViewRow>
-		   <TableViewRow id="supplier" backgroundColor="transparent" Title="supplier">
+		   <TableViewRow id="supplier" backgroundColor="transparent" Title="Supplier">
 		   		  <Label id="label_supplier" color="#FFDEAD" top="5" left="50" text="Supplier >"/>
 		   </TableViewRow>
-		   <TableViewRow id="inventory" backgroundColor="transparent" Title="inventory">
+		   <TableViewRow id="inventory" backgroundColor="transparent" Title="Inventory">
 		   		  <Label id="label_inventory" color="white" top="5" left="50" text="Inventory >"/>
 		   </TableViewRow>
-		   <TableViewRow id="proposal" backgroundColor="transparent" Title="proposal">
+		   <TableViewRow id="proposal" backgroundColor="transparent" Title="Proposal">
 		   		  <Label id="label_proposal" color="#FAFAD2" top="5" left="50" text="Proposal >"/>
 		   </TableViewRow>
-		   <TableViewRow id="report" backgroundColor="transparent" Title="report">
+		   <TableViewRow id="report" backgroundColor="transparent" Title="Report">
 		   		  <Label id="label_report" color="#B0E0E6" top="5" left="50" text="Report >"/>
+		   </TableViewRow>
+		   <TableViewRow id="enterdata" backgroundColor="transparent" Title="Enter Data">
+		   		  <Label id="enterdata_report" color="#FFE4E1" top="5" left="50" text="Enter Client, Project & Invoice >"/>
 		   </TableViewRow>
 		   <TableViewRow id="google" Title="google"/>
 	   </TableView>

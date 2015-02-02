@@ -1,0 +1,7 @@
+gsx:address<Alloy>
+  <Window id="enterproject_window" backgroundImage="lngembossi6page4.png" title="enterproject List">
+	  <TableView id="enterproject_table" backgroundColor="transparent" >
+		  <TableViewRow id="enterproject_row" backgroundColor="transparent" opacity="0" Title="enterproject"/>
+	  </TableView>
+  </Window>
+</Alloy>
