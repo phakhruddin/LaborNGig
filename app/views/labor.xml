@@ -1,5 +1,5 @@
 <Alloy>
-  <Window id="labor_window" backgroundImage="page3_750x1334-emboss.png" title="Field Tech/Labor List">
+  <Window id="labor_window" backgroundImage="bg-black2.png" title="Field Tech/Labor List">
 	  <TableView id="labor_table" backgroundColor="transparent" >
 		  <TableViewRow id="labor_row" backgroundColor="transparent" opacity="0" Title="labor"/>
 	  </TableView>

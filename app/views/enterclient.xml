@@ -33,6 +33,10 @@
 		  	<TextField id="clientproject_tf"></TextField>
 			<Button id="save_clientproject_button"></Button>
 		  </TableViewRow>
+		  <TableViewRow id="clientcompanyinput" backgroundColor="transparent" opacity="0" color="white" Title="Client company">
+		  	<TextField id="clientcompany_tf"></TextField>
+			<Button id="save_clientcompany_button"></Button>
+		  </TableViewRow>
 		  <TableViewRow id="submitinput" backgroundColor="transparent" opacity="0" color="white" Title="Submit">
 			<Button id="submit_button"></Button>
 		  </TableViewRow>

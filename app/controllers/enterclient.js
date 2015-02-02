@@ -2,10 +2,19 @@ exports.openMainWindow = function(_tab) {
   _tab.open($.enterclient_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
   
+  	googleAuth.isAuthorized(function() {
+			Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
+			//user is authorized so do something... just dont forget to add accessToken to your requests
+			
+		}, function() {
+			//authorize first
+			Ti.API.info('Authorized first, see next window: ');
+			googleAuth.authorize();
+		});
+  
   	$.save_clientlastname_button.addEventListener('click', function(_e) {
     $.clientlastname_tf.blur();
     var clientlastname = $.clientlastname_tf.value;
-    var name = "test1";
     Ti.API.info("clientlastname entered is: "+clientlastname);
     Titanium.App.Properties.setString('clientlastname',clientlastname);
     Ti.API.info("clientlastname obtained is: "+Titanium.App.Properties.getString('clientlastname',"none"));
@@ -19,7 +28,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientfirstname_button.addEventListener('click', function(_e) {
     $.clientfirstname_tf.blur();
     var clientfirstname = $.clientfirstname_tf.value;
-    var name = "test1";
     Ti.API.info("clientfirstname entered is: "+clientfirstname);
     Titanium.App.Properties.setString('clientfirstname',clientfirstname);
     Ti.API.info("clientfirstname obtained is: "+Titanium.App.Properties.getString('clientfirstname',"none"));
@@ -33,7 +41,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientemail_button.addEventListener('click', function(_e) {
     $.clientemail_tf.blur();
     var clientemail = $.clientemail_tf.value;
-    var name = "test1";
     Ti.API.info("clientemail entered is: "+clientemail);
     Titanium.App.Properties.setString('clientemail',clientemail);
     Ti.API.info("clientemail obtained is: "+Titanium.App.Properties.getString('clientemail',"none"));
@@ -47,7 +54,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientphone_button.addEventListener('click', function(_e) {
     $.clientphone_tf.blur();
     var clientphone = $.clientphone_tf.value;
-    var name = "test1";
     Ti.API.info("clientphone entered is: "+clientphone);
     Titanium.App.Properties.setString('clientphone',clientphone);
     Ti.API.info("clientphone obtained is: "+Titanium.App.Properties.getString('clientphone',"none"));
@@ -61,7 +67,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientstreetaddress_button.addEventListener('click', function(_e) {
     $.clientstreetaddress_tf.blur();
     var clientstreetaddress = $.clientstreetaddress_tf.value;
-    var name = "test1";
     Ti.API.info("clientstreetaddress entered is: "+clientstreetaddress);
     Titanium.App.Properties.setString('clientstreetaddress',clientstreetaddress);
     Ti.API.info("clientstreetaddress obtained is: "+Titanium.App.Properties.getString('clientstreetaddress',"none"));
@@ -75,7 +80,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientcity_button.addEventListener('click', function(_e) {
     $.clientcity_tf.blur();
     var clientcity = $.clientcity_tf.value;
-    var name = "test1";
     Ti.API.info("clientcity entered is: "+clientcity);
     Titanium.App.Properties.setString('clientcity',clientcity);
     Ti.API.info("clientcity obtained is: "+Titanium.App.Properties.getString('clientcity',"none"));
@@ -89,7 +93,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientstate_button.addEventListener('click', function(_e) {
     $.clientstate_tf.blur();
     var clientstate = $.clientstate_tf.value;
-    var name = "test1";
     Ti.API.info("clientstate entered is: "+clientstate);
     Titanium.App.Properties.setString('clientstate',clientstate);
     Ti.API.info("clientstate obtained is: "+Titanium.App.Properties.getString('clientstate',"none"));
@@ -103,7 +106,6 @@ exports.openMainWindow = function(_tab) {
 	$.save_clientproject_button.addEventListener('click', function(_e) {
     $.clientproject_tf.blur();
     var clientproject = $.clientproject_tf.value;
-    var name = "test1";
     Ti.API.info("clientproject entered is: "+clientproject);
     Titanium.App.Properties.setString('clientproject',clientproject);
     Ti.API.info("clientproject obtained is: "+Titanium.App.Properties.getString('clientproject',"none"));
@@ -113,8 +115,22 @@ exports.openMainWindow = function(_tab) {
 	$.clientproject_tf.addEventListener("focus", function(){
  	$.save_clientproject_button.show();
  });
+ 
+ 	$.save_clientcompany_button.addEventListener('click', function(_e) {
+    $.clientcompany_tf.blur();
+    var clientcompany = $.clientcompany_tf.value;
+    Ti.API.info("clientcompany entered is: "+clientcompany);
+    Titanium.App.Properties.setString('clientcompany',clientcompany);
+    Ti.API.info("clientcompany obtained is: "+Titanium.App.Properties.getString('clientcompany',"none"));
+    $.save_clientcompany_button.hide();
+ });
 
- $.submit_button.addEventListener("click", function(){
+	$.clientcompany_tf.addEventListener("focus", function(){
+ 	$.save_clientcompany_button.show();
+ });
+
+ 	$.submit_button.addEventListener("click", function(){
+		
  	var now = new Date();
  	var clientlastname = Titanium.App.Properties.getString('clientlastname',"none");
  	var clientfirstname = Titanium.App.Properties.getString('clientfirstname',"none");
@@ -124,11 +140,48 @@ exports.openMainWindow = function(_tab) {
  	var clientcity = Titanium.App.Properties.getString('clientcity',"none");
  	var clientstate = Titanium.App.Properties.getString('clientstate',"none");
  	var clientproject = Titanium.App.Properties.getString('clientproject',"none");
+ 	var clientcompany = Titanium.App.Properties.getString('clientcompany',"none");
  	alert("On "+now+" : Info on: "+clientfirstname+" "+clientlastname+" with "+clientphone+" and email "+clientemail+" at "+clientstreetaddress+", "+clientcity+", "+clientstate+". submitted");
  	var fcsv = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'enterclient.csv');
  	var ftxt = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'enterclient.txt');
 	fcsv.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
 	ftxt.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
+	var xmldatastring = '<entry xmlns=\'http://www.w3.org/2005/Atom\' xmlns:gsx=\'http://schemas.google.com/spreadsheets/2006/extended\'>'
+	+'<gsx:name>'+clientfirstname+'</gsx:name><gsx:firstname>'+clientfirstname+'</gsx:firstname><gsx:lastname>'
+	+clientlastname+'</gsx:lastname><gsx:company>'+clientcompany+'</gsx:company><gsx:phone>'
+	+clientphone+'</gsx:phone><gsx:email>'+clientemail+'</gsx:email><gsx:address>'+clientstreetaddress+'</gsx:address><gsx:city>'+clientcity+'</gsx:city><gsx:state>'+clientstate
+	+'</gsx:state><gsx:country>'+'USA'+'</gsx:country><gsx:invoice>'+'NA'+'</gsx:invoice><gsx:project>NA</gsx:project><gsx:proposal>NA</gsx:proposal><gsx:col14>NA</gsx:col14><gsx:col15>NA</gsx:col15><gsx:col16>NA</gsx:col16></entry>';
+	Ti.API.info('xmldatastring to POST: '+xmldatastring);
+	var xhr =  Titanium.Network.createHTTPClient({
+    onload: function() {
+    	try {
+    		Ti.API.info(this.responseText); 
+    	} catch(e){
+    		Ti.API.info("cathing e: "+JSON.stringify(e));
+    	}     
+    },
+    onerror: function(e) {
+    	Ti.API.info("error e: "+JSON.stringify(e));
+        alert("Danger, Will Robinson!"); 
+    }
+});
+	xhr.open("POST", 'https://spreadsheets.google.com/feeds/list/1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w/od6/private/full');
+	xhr.setRequestHeader("Content-type", "application/atom+xml");
+	xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuth.getAccessToken());
+	xhr.send(xmldatastring);
+	Ti.API.info('done POSTed');
+
+
  });
 
 };
+
+var GoogleAuth = require('googleAuth');
+var googleAuth = new GoogleAuth({
+	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
+	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
+	propertyName : 'googleToken',
+	scope : ['https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly'],
+	quiet: false
+	//scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds'],
+});

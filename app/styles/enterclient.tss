@@ -127,6 +127,22 @@
 		width:80,
 		top:20
 },
+"#clientcompany_tf" : {
+		height: 40,
+		top:50,
+		width:250,
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+		hintText:'company: dBayCo Inc.'
+},
+"#clientcompany_tf[platform=android]" : {
+		height:Ti.UI.SIZE ,
+},
+"#save_clientcompany_button" :{
+		title:"Save",
+		height:Ti.UI.SIZE,
+		width:80,
+		top:20
+},
 "#submit_button" :{
 		title:"SUBMIT",
 		height:Ti.UI.SIZE,
