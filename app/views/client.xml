@@ -1,11 +1,11 @@
 <Alloy>
 <Collection src="client"/>
   <Tab id="tab_client" title="Client">
-	  <Window id="client_window" backgroundImage="lngembossi6page2.png" title="Client List">
+	  <Window id="client_window" backgroundImage="bg-green1.png" title="Client List">
 	  	<TableView id="client_table"  backgroundColor="transparent" dataCollection="client" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		  	<SearchBar id="search_history" height="43" />
 				<TableViewRow id="client_row" backgroundColor="transparent" opacity="0" color="transparent" title="{title}">
-					<Label color="#D8D8BF" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
+					<Label color="white" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
 				</TableViewRow>
 		</TableView>
 	  </Window>

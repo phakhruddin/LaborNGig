@@ -1,7 +1,7 @@
 <Alloy>
 	<Collection src="invoice"/>
  <Tab id="tab_invoice" title="invoice">
-  <Window id="invoice_window" backgroundImage="page3_750x1334-emboss.png"  title="Invoice List">
+  <Window id="invoice_window" backgroundImage="lngembossi6page3.png"  title="Invoice List">
 	  <TableView id="invoice_table" backgroundColor="transparent" dataCollection="invoice" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		<SearchBar id="search_history" height="43" />
 		  <TableViewRow id="invoice_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">

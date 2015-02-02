@@ -3,13 +3,13 @@
   <Collection src="client"/>
   <Collection src="invoice"/>
   <Tab id="tab_one" title="MAIN">
-    <Window title="Labor&Gig" backgroundImage="lngembossi6page3.png" class='container'>
+    <Window title="Labor&Gig" backgroundImage="bg-black1.png" class='container'>
       <TableView id="table" backgroundColor="transparent"  >
  	      <TableViewRow id="schedule" opacity="0" Title="location">
 		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
 		   </TableViewRow>
 	      <TableViewRow id="location" backgroundColor="transparent" Title="Location">
-		   		  <Label id="label_location" color="green" top="5" left="50" text="Where is the labor today? >"/>
+		   		  <Label id="label_location" color="#D8D8BF" top="5" left="50" text="Where is the labor today? >"/>
 		   </TableViewRow>
 		   <TableViewRow id="project" backgroundColor="transparent" Title="Project">
 		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>

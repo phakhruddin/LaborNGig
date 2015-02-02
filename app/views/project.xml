@@ -1,7 +1,7 @@
 <Alloy>
 <Collection src="project"/>
  <Tab id="tab_project" title="project">
-  <Window id="project_window" backgroundImage="page3_750x1334-emboss.png" title="project List">
+  <Window id="project_window" backgroundImage="bg-red1.png" title="project List">
 	  <TableView id="project_table" backgroundColor="transparent" dataCollection="project" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		<SearchBar id="search_history" height="43" />
 		  <TableViewRow id="project_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">

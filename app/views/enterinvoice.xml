@@ -1,4 +1,4 @@
-gsx:address<Alloy>
+<Alloy>
   <Window id="enterinvoice_window" backgroundImage="lngembossi6page4.png" title="enterinvoice List">
 	  <TableView id="enterinvoice_table" backgroundColor="transparent" >
 		  <TableViewRow id="enterinvoice_row" backgroundColor="transparent" opacity="0" Title="enterinvoice"/>
