@@ -20,7 +20,8 @@ $.schedule.addEventListener ("click", function(e){
  	
 $.client.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w','client');
+	//Alloy.Globals.getData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w','client');
+	Alloy.Globals.getPrivateData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w','client');
 	var scheduleController = Alloy.createController("client");
 	scheduleController.openMainWindow($.tab_one);	
 });

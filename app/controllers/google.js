@@ -30,8 +30,39 @@ exports.openMainWindow = function(_tab) {
 			googlegetData(url);		
 		}, function() {
 			//authorize first
+			var win = Titanium.UI.createWindow({
+				fullscreen: false,
+				tabBarHidden : false,
+				navBarHidden: false,
+				modal: true
+			});	
+			var btnBack = Ti.UI.createButton({ 
+				title: '< Back', 
+				top: 5,
+				left: 10
+			});
+	   		var win1 = Titanium.UI.iOS.createNavigationWindow({
+				Title: "Authentication",
+				backgroundColor: "transparent",
+		   	  	window: win
+	    	});
+	    	var view = Titanium.UI.createView({
+				   borderRadius:10,
+				   backgroundColor:'red',
+				   width:50,
+				   height:50
+			});	    	
+	    	btnBack.addEventListener("click", function(_tab) { 
+				console.debug("closing window" +_tab);
+		//		Ti.API.info("tab:" + JSON.stringify(_tab));
+				win1.close();
+			});
 			Ti.API.info('Authorized first: ');
-			googleAuthSheet.authorize();
+			view.add(googleAuthSheet.authorize());			
+			win1.add(btnBack);
+			window.add(view);
+			win1.open({modal:true});			
+
 		});
 	});
 	
@@ -148,12 +179,12 @@ function googlegetData(url) {
 				//var name = xml.documentElement.getElementsByTagName("gsx:name");
 				//var address = xml.documentElement.getElementsByTagName("gsx:address");
 				Ti.API.info("this entry length is: " +entry.length);
-				for (i=0;i<entry.length;i++){
-					var name = entry.item(i).getElementsByTagName("gsx:name").item(0).text;
-					var address = entry.item(i).getElementsByTagName("gsx:address").item(0).text;
+				for (i=1;i<entry.length;i++){
+					var name = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
+					var address = entry.item(i).getElementsByTagName("gsx:col6").item(0).text;
 					Ti.API.info("this entry "+i+" name is: " +name);
 					Ti.API.info("this entry "+i+" address is: " +address);
-					data.push({"name":+name,"address":+address});
+					data.push({"name":name,"address":address});
 				}
 				var file = Ti.Filesystem.getFile(
 					Ti.Filesystem.tempDirectory, thetextfile

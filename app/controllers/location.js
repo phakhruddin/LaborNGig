@@ -9,8 +9,13 @@ exports.openMainWindow = function(_tab) {
   
   $.checkloc.addEventListener ("click", function(e){
 		Alloy.Globals.openDetail(e);
+		Alloy.Globals.getData('1-YaHKOuTqpRG1X83_1tZ6zHWrO1krEmV99HS7S130Hc','labor');
 		var scheduleController = Alloy.createController("labor");
 		scheduleController.openMainWindow($.tab_two);	
 	});
 	
+  $.checkallloc.addEventListener ("click", function(e){
+		Alloy.Globals.openDetail(e);
+		Alloy.Globals.UpdateMap('41.981233','-87.868259',"None");
+	});
 };

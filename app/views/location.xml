@@ -6,7 +6,10 @@
 		   		  <Label id="label_updateloc" color="white" top="5" left="50" text="Update Your Location >"/>
 		  </TableViewRow>
 		  <TableViewRow id="checkloc" backgroundColor="transparent" opacity="0" Title="checkloc">
-		   		  <Label id="label_checkloc" color="white" top="5" left="50" text="Check Labor Location >"/>
+		   		  <Label id="label_checkloc" color="white" top="5" left="50" text="Check Every Labor Location >"/>
+		  </TableViewRow>
+		  <TableViewRow id="checkallloc" backgroundColor="transparent" opacity="0" Title="checkallloc">
+		   		  <Label id="label_checkallloc" color="white" top="5" left="50" text="Check All Labor Location >"/>
 		  </TableViewRow>
 	  </TableView>
   </Window>

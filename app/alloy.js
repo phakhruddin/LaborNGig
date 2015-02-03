@@ -37,19 +37,17 @@ Alloy.Globals.googleAuth = new Alloy.Globals.GoogleAuth_module({
 	scope : [ 'https://www.googleapis.com/auth/tasks', 'https://www.googleapis.com/auth/tasks.readonly' ]
 });
 
-Alloy.Globals.UpdateMap = function(latitude,longitude) {
+Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
 	
-		console.log(" json _tab :"+JSON.stringify(_tab));
-	console.log(" json args :"+JSON.stringify(args));
-	var latitude = args.latitude || 42.432276;
-	var longitude = args.longitude || -87.952004;
-	var title = args.title || "Waukegan Toll Plaza 21";
-	var subtitle = args.hwy || 'I-94 Gurnee, IL';
+	var latitude = latitude;
+	var longitude = longitude;
+	var subtitle = "None";
+	console.log("map obtained with latitude: "+latitude+" longitude: "+longitude);
 	
   if(Ti.Platform.osname == 'android'){
   		var Map = Titanium.Map;
   		
-  		var tollPlaza0 = Map.createAnnotation({
+  		var name = Map.createAnnotation({
 	    latitude:latitude,
 	    longitude:longitude,
 	    title:title,
@@ -64,7 +62,7 @@ Alloy.Globals.UpdateMap = function(latitude,longitude) {
 	    animate:true,
 	    regionFit:true,
 	    userLocation:true,
-	    annotations:[tollPlaza0]
+	    annotations:[name]
 	});
   	} else {
 		var Map = require('ti.map');
@@ -136,7 +134,7 @@ Alloy.Globals.CheckLoc = function(){
 	    } else {
 	        Ti.API.info(e.coords);
 	        var coordslat =  e.coords.latitude;
-	        alert( "latitude :"+e.coords.latitude+" longitude : "+e.coords.longitude);
+	        alert("Thanks for updating your location. loc details: latitude :"+e.coords.latitude+" longitude : "+e.coords.longitude);
 	        }
 	    });
 	} else {
@@ -173,7 +171,8 @@ Alloy.Globals.getData = function(sid,type) {
 			(type == 'invoice') && Alloy.Collections.invoice.deleteAll();
 			(type == 'supplier') && Alloy.Collections.supplier.deleteAll();
 			(type == 'proposal') && Alloy.Collections.proposal.deleteAll();
-			for (var i=0; i < +json.feed.entry.length; i++) {
+			(type == 'labor') && Alloy.Collections.labor.deleteAll();
+			for (var i=1; i < +json.feed.entry.length; i++) {
 				var dataModel = Alloy.createModel(type,{
 					col1 :  json.feed.entry[i].title.$t || "none",
 					col2 : json.feed.entry[i].content.$t.split(',')[0] && json.feed.entry[i].content.$t.split(',')[0].split(':')[1] || "none",
@@ -213,6 +212,65 @@ Alloy.Globals.createController = function(controller,sourcetab){
 		newController.openMainWindow('$.'+sourcetab);
 };
 
+Alloy.Globals.getPrivateData = function(sid,type) {	
+	var data = [];
+	var url = "https://spreadsheets.google.com/feeds/list/"+sid+"/od6/private/full";
+	var thefile = "gss"+sid+".xml";
+	var xhr = Ti.Network.createHTTPClient({
+	    onload: function(e) {
+	    try {
+			var xml = Titanium.XML.parseString(this.responseText);
+			console.log("response txt is: "+this.responseText);
+			console.log("this xml is: " +xml);	   
+			var feed = xml.documentElement.getElementsByTagName("feed");
+			var entry = xml.documentElement.getElementsByTagName("entry"); 
+			console.log("this entry length is: " +entry.length);
+			for (i=1;i<entry.length;i++){
+				var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
+				var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text;
+				data.push({"identification":col1,"next column":col2});
+				console.log("updating database with data :"+JSON.stringify(data));
+				var dataModel = Alloy.createModel(type,{
+					col1 :  entry.item(i).getElementsByTagName("gsx:col1").item(0).text || "none",
+					col2 : entry.item(i).getElementsByTagName("gsx:col2").item(0).text || "none",
+					col3 :  entry.item(i).getElementsByTagName("gsx:col3").item(0).text || "none",
+					col4 :  entry.item(i).getElementsByTagName("gsx:col4").item(0).text || "none",
+					col5 :  entry.item(i).getElementsByTagName("gsx:col5").item(0).text || "none",
+					col6 :  entry.item(i).getElementsByTagName("gsx:col6").item(0).text || "none",
+					col7 :  entry.item(i).getElementsByTagName("gsx:col7").item(0).text || "none",
+					col8 :  entry.item(i).getElementsByTagName("gsx:col8").item(0).text || "none",
+					col9 :  entry.item(i).getElementsByTagName("gsx:col9").item(0).text || "none",
+					col10 :  entry.item(i).getElementsByTagName("gsx:col10").item(0).text || "none",
+					col11 :  entry.item(i).getElementsByTagName("gsx:col11").item(0).text || "none",
+					col12 :  entry.item(i).getElementsByTagName("gsx:col12").item(0).text || "none",
+					col13 :  entry.item(i).getElementsByTagName("gsx:col13").item(0).text || "none",
+					col14 :  entry.item(i).getElementsByTagName("gsx:col14").item(0).text || "none",
+					col15 :  entry.item(i).getElementsByTagName("gsx:col15").item(0).text || "none",
+					col16 :  entry.item(i).getElementsByTagName("gsx:col16").item(0).text || "none",		
+				});	
+				}
+			var file = Ti.Filesystem.getFile(
+				Ti.Filesystem.tempDirectory, thefile
+			);
+			if(file.exists() && file.writeable) {
+			    var success = file.deleteFile();
+			    Ti.API.info((success==true) ? 'success' : 'fail'); // outputs 'success'
+			}
+			file.write(this.responseText);
+			console.log("checking data " +JSON.stringify(data));
+			//
+			} catch(e){
+				Ti.API.info("cathing e: "+JSON.stringify(e));
+			}
+		}
+	});
+	xhr.onerror = function(e){
+		alert(e);
+	};
+	xhr.open("GET", url);
+	xhr.send();
+	Ti.API.info(" Data were successfuly downloaded from "+url+". Please proceed.");
+};
 
 Alloy.Globals.xmlToJson = function(xml) {	
 	// Create the return object
