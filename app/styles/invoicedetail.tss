@@ -2,7 +2,7 @@
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	color: "#D8D8BF",
+	color: "orange",
 	font: {
         fontFamily:'Helvetica',
         fontWeight: 'normal'	}

@@ -2,16 +2,8 @@ exports.openMainWindow = function(_tab) {
   _tab.open($.enterclient_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
   
-  	googleAuth.isAuthorized(function() {
-			Ti.API.info('Access Token: ' + googleAuth.getAccessToken());
-			//user is authorized so do something... just dont forget to add accessToken to your requests
-			
-		}, function() {
-			//authorize first
-			Ti.API.info('Authorized first, see next window: ');
-			googleAuth.authorize();
-		});
-  
+	Alloy.Globals.checkGoogleisAuthorized();
+	  
   	$.save_clientlastname_button.addEventListener('click', function(_e) {
     $.clientlastname_tf.blur();
     var clientlastname = $.clientlastname_tf.value;
@@ -147,10 +139,10 @@ exports.openMainWindow = function(_tab) {
 	fcsv.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
 	ftxt.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
 	var xmldatastring = '<entry xmlns=\'http://www.w3.org/2005/Atom\' xmlns:gsx=\'http://schemas.google.com/spreadsheets/2006/extended\'>'
-	+'<gsx:name>'+clientfirstname+'</gsx:name><gsx:firstname>'+clientfirstname+'</gsx:firstname><gsx:lastname>'
-	+clientlastname+'</gsx:lastname><gsx:company>'+clientcompany+'</gsx:company><gsx:phone>'
-	+clientphone+'</gsx:phone><gsx:email>'+clientemail+'</gsx:email><gsx:address>'+clientstreetaddress+'</gsx:address><gsx:city>'+clientcity+'</gsx:city><gsx:state>'+clientstate
-	+'</gsx:state><gsx:country>'+'USA'+'</gsx:country><gsx:invoice>'+'NA'+'</gsx:invoice><gsx:project>NA</gsx:project><gsx:proposal>NA</gsx:proposal><gsx:col14>NA</gsx:col14><gsx:col15>NA</gsx:col15><gsx:col16>NA</gsx:col16></entry>';
+	+'<gsx:col1>'+clientfirstname+'</gsx:col1><gsx:col2>'+clientfirstname+'</gsx:col2><gsx:col3>'
+	+clientlastname+'</gsx:col3><gsx:col4>'+clientcompany+'</gsx:col4><gsx:col5>'
+	+clientphone+'</gsx:col5><gsx:col6>'+clientemail+'</gsx:col6><gsx:col7>'+clientstreetaddress+'</gsx:col7><gsx:col8>'+clientcity+'</gsx:col8><gsx:col9>'+clientstate
+	+'</gsx:col9><gsx:col10>'+'USA'+'</gsx:col10><gsx:col11>'+'NA'+'</gsx:col11><gsx:col12>NA</gsx:col12><gsx:col13>NA</gsx:col13><gsx:col14>NA</gsx:col14><gsx:col15>NA</gsx:col15><gsx:col16>NA</gsx:col16></entry>';
 	Ti.API.info('xmldatastring to POST: '+xmldatastring);
 	var xhr =  Titanium.Network.createHTTPClient({
     onload: function() {

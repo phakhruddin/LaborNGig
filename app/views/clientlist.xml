@@ -1,0 +1,13 @@
+<Alloy>
+<Collection src="client"/>
+  <Tab id="tab_clientlist" title="clientlist">
+	  <Window id="clientlist_window" backgroundImage="bg-green1.png" title="clientlist List">
+	  	<TableView id="clientlist_table"  backgroundColor="transparent" dataCollection="client" search="search_history" dataTransform="transformFunction" filterAttribute="title">
+		  	<SearchBar id="search_history" height="43" />
+				<TableViewRow id="clientlist_row" backgroundColor="transparent" opacity="0" color="transparent" title="{title}">
+					<Label color="white" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
+				</TableViewRow>
+		</TableView>
+	  </Window>
+  </Tab>
+</Alloy>

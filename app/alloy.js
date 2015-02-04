@@ -308,3 +308,59 @@ Alloy.Globals.xmlToJson = function(xml) {
 	}
 	return obj;
 };
+
+var GoogleAuth = require('googleAuth');
+var googleAuthSheet = new GoogleAuth({
+	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
+	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
+	propertyName : 'googleToken',
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds'],
+	quiet: false
+});
+
+Alloy.Globals.LaunchWindowGoogleAuth = function() {
+			//authorize first
+			var win = Titanium.UI.createWindow({
+				fullscreen: false,
+				tabBarHidden : false,
+				navBarHidden: false,
+				modal: true
+			});	
+			var btnBack = Ti.UI.createButton({ 
+				title: '< Back', 
+				top: 5,
+				left: 10
+			});
+	   		var win1 = Titanium.UI.iOS.createNavigationWindow({
+				Title: "Authentication",
+				backgroundColor: "transparent",
+		   	  	window: win
+	    	});
+	    	var view = Titanium.UI.createView({
+				   borderRadius:10,
+				   backgroundColor:'red',
+				   width:50,
+				   height:50
+			});	    	
+	    	btnBack.addEventListener("click", function(_tab) { 
+				console.debug("closing window" +_tab);
+		//		Ti.API.info("tab:" + JSON.stringify(_tab));
+				win1.close();
+			});
+			Ti.API.info('Authorized first: ');
+			view.add(googleAuthSheet.authorize());			
+			win1.add(btnBack);
+			window.add(view);
+			win1.open({modal:true});			
+
+	};
+	
+	Alloy.Globals.checkGoogleisAuthorized = function () {
+		googleAuthSheet.isAuthorized(function() {
+		console.log('Access Token: ' + googleAuthSheet.getAccessToken());
+	}, function() {
+		console.log('Authorized first, see next window: ');
+		Alloy.Globals.LaunchWindowGoogleAuth();
+	});
+
+	};	

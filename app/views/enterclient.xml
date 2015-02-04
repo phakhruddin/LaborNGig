@@ -1,5 +1,5 @@
 <Alloy>
-  <Window id="enterclient_window" backgroundImage="lngembossi6page4.png" title="enterclient List">
+  <Window id="enterclient_window" backgroundImage="bg-green2.png" title="enterclient List">
 	  <TableView id="enterclient_table" backgroundColor="transparent" >
 	  	  <TableViewRow id="clientfirstnameinput" backgroundColor="transparent" opacity="0" color="white" Title="Client FirstName">
 		  	<TextField id="clientfirstname_tf"></TextField>

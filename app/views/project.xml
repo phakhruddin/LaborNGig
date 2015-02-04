@@ -1,12 +1,16 @@
 <Alloy>
-<Collection src="project"/>
  <Tab id="tab_project" title="project">
   <Window id="project_window" backgroundImage="bg-red1.png" title="project List">
-	  <TableView id="project_table" backgroundColor="transparent" dataCollection="project" search="search_history" dataTransform="transformFunction" filterAttribute="title">
-		<SearchBar id="search_history" height="43" />
-		  <TableViewRow id="project_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">
-		  	<Label color="#D8D8BF" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
+	  <TableView id="project_table" backgroundColor="transparent">
+	  	 <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="projectenter_row" backgroundColor="transparent" opacity="0" Title="Project Entry">
+		  	<Label id="projectenter_label" color="white" top="5" left="50" text="Enter Project >"/>
 		  </TableViewRow>
+		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="projectlist_row" backgroundColor="transparent" opacity="0" Title="Project Entry">
+		  	<Label id="projectlist_label" color="#EEE8AA" top="5" left="50" text="List Projects >"/>
+		  </TableViewRow>
+		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
 	  </TableView>
   </Window>
   </Tab>

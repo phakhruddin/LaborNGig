@@ -33,7 +33,7 @@
 		   		  <Label id="label_report" color="#B0E0E6" top="5" left="50" text="Report >"/>
 		   </TableViewRow>
 		   <TableViewRow id="enterdata" backgroundColor="transparent" Title="Enter Data">
-		   		  <Label id="enterdata_report" color="#FFE4E1" top="5" left="50" text="Enter Client, Project & Invoice >"/>
+	   		  	<Label id="enterdata_report" color="#FFE4E1" top="5" left="50" text="Enter Client, Project & Invoice >"/>
 		   </TableViewRow>
 		   <TableViewRow id="google" Title="google"/>
 	   </TableView>

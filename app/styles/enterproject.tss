@@ -3,7 +3,7 @@
 		top:50,
 		width:250,
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
-		hintText:'FirstName: e.g. Isaac'
+		hintText:'FIRSTNAME: e.g. Isaac'
 },
 "#clientfirstname_tf[platform=android]" : {
 		height:Ti.UI.SIZE ,

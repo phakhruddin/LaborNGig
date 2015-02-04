@@ -12,9 +12,7 @@ exports.openMainWindow = function(_tab) {
 		}, function() {
 			//authorize first
 			Ti.API.info('Authorized first, see next window: ');
-			var tabViewOneChildController = Alloy.createController("googleauth");
-  			tabViewOneChildController.openMainWindow($.tab_google);	
-			//googleAuth.authorize();
+			Alloy.Globals.LaunchWindowGoogleAuth();
 		});
 	});
 	
