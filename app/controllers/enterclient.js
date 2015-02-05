@@ -1,8 +1,10 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.enterclient_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
-  
-	Alloy.Globals.checkGoogleisAuthorized();
+    //var result = Alloy.Globals.checkNetwork('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');
+   Alloy.Globals.checkNetworkAndGoogleAuthorized('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');
+    
+    //Alloy.Globals.checkGoogleisAuthorized();
 	  
   	$.save_clientlastname_button.addEventListener('click', function(_e) {
     $.clientlastname_tf.blur();

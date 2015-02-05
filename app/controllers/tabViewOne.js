@@ -7,7 +7,8 @@ $.location.addEventListener ("click", function(e){
 
 $.project.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
+	Alloy.Globals.getPrivateData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
+	//Alloy.Globals.getData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
   	var tabViewOneChildController = Alloy.createController("project");
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });
@@ -28,7 +29,8 @@ $.client.addEventListener ("click", function(e){
 
 $.invoice.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getData('1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk','invoice');
+	Alloy.Globals.getPrivateData('1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk','invoice');
+	//Alloy.Globals.getData('1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk','invoice');
 	var scheduleController = Alloy.createController("invoice");
 	scheduleController.openMainWindow($.tab_one);	
 });
@@ -41,14 +43,16 @@ $.supplier.addEventListener ("click", function(e){
 
 $.inventory.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
+	Alloy.Globals.getPrivateData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
+	//Alloy.Globals.getData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
   	var tabViewOneChildController = Alloy.createController("inventory");
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });
 
 $.proposal.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
+	Alloy.Globals.getPrivateData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
+	//Alloy.Globals.getData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
   	var tabViewOneChildController = Alloy.createController("proposal");
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });

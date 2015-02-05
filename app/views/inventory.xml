@@ -1,7 +1,7 @@
 <Alloy>
 	<Collection src="inventory"/>
 	<Tab id="tab_inventory">
-  <Window id="inventory_window" backgroundImage="bg-green2.png" title="inventory List">
+  <Window id="inventory_window" backgroundImage="blblue-bg1.png" title="inventory List">
 	  <TableView id="inventory_table" backgroundColor="transparent" dataCollection="inventory" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		<SearchBar id="search_history" height="43" />
 		  <TableViewRow id="inventory_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">

@@ -214,6 +214,8 @@ Alloy.Globals.createController = function(controller,sourcetab){
 
 Alloy.Globals.getPrivateData = function(sid,type) {	
 	var data = [];
+	//Alloy.Globals.checkGoogleisAuthorized();
+	Alloy.Globals.checkNetworkAndGoogleAuthorized('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');
 	var url = "https://spreadsheets.google.com/feeds/list/"+sid+"/od6/private/full";
 	var thefile = "gss"+sid+".xml";
 	var xhr = Ti.Network.createHTTPClient({
@@ -265,7 +267,8 @@ Alloy.Globals.getPrivateData = function(sid,type) {
 		}
 	});
 	xhr.onerror = function(e){
-		alert(e);
+		//alert(e);
+		alert("Unable to connect to the network. The "+type+" info displayed here is NOT the latest.");
 	};
 	xhr.open("GET", url);
 	xhr.send();
@@ -318,6 +321,14 @@ var googleAuthSheet = new GoogleAuth({
 	quiet: false
 });
 
+Alloy.Globals.googleAuthSheet = new GoogleAuth({
+	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
+	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
+	propertyName : 'googleToken',
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds'],
+	quiet: false
+});
+
 Alloy.Globals.LaunchWindowGoogleAuth = function() {
 			//authorize first
 			var win = Titanium.UI.createWindow({
@@ -355,8 +366,8 @@ Alloy.Globals.LaunchWindowGoogleAuth = function() {
 
 	};
 	
-	Alloy.Globals.checkGoogleisAuthorized = function () {
-		googleAuthSheet.isAuthorized(function() {
+Alloy.Globals.checkGoogleisAuthorized = function () {
+	googleAuthSheet.isAuthorized(function() {
 		console.log('Access Token: ' + googleAuthSheet.getAccessToken());
 	}, function() {
 		console.log('Authorized first, see next window: ');
@@ -364,3 +375,65 @@ Alloy.Globals.LaunchWindowGoogleAuth = function() {
 	});
 
 	};	
+	
+Alloy.Globals.updateSpreadsheet = function (sid){
+	 	var now = new Date();
+ 	var clientlastname = Titanium.App.Properties.getString('clientlastname',"none");
+ 	var clientfirstname = Titanium.App.Properties.getString('clientfirstname',"none");
+ 	var clientphone = Titanium.App.Properties.getString('clientphone',"none");
+ 	var clientemail = Titanium.App.Properties.getString('clientemail',"none");
+ 	var clientstreetaddress = Titanium.App.Properties.getString('clientstreetaddress',"none");
+ 	var clientcity = Titanium.App.Properties.getString('clientcity',"none");
+ 	var clientstate = Titanium.App.Properties.getString('clientstate',"none");
+ 	var clientproject = Titanium.App.Properties.getString('clientproject',"none");
+ 	var clientcompany = Titanium.App.Properties.getString('clientcompany',"none");
+ 	alert("On "+now+" : Info on: "+clientfirstname+" "+clientlastname+" with "+clientphone+" and email "+clientemail+" at "+clientstreetaddress+", "+clientcity+", "+clientstate+". submitted");
+ 	var fcsv = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'enterclient.csv');
+ 	var ftxt = Ti.Filesystem.getFile(Ti.Filesystem.tempDirectory,'enterclient.txt');
+	fcsv.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
+	ftxt.write(now+", "+clientfirstname+", "+clientlastname+", "+clientphone+", "+clientemail+", "+clientstreetaddress+", "+clientcity+", "+clientstate+'\n', true); // write to the file
+	var xmldatastring = '<entry xmlns=\'http://www.w3.org/2005/Atom\' xmlns:gsx=\'http://schemas.google.com/spreadsheets/2006/extended\'>'
+	+'<gsx:col1>'+clientfirstname+'</gsx:col1><gsx:col2>'+clientfirstname+'</gsx:col2><gsx:col3>'
+	+clientlastname+'</gsx:col3><gsx:col4>'+clientcompany+'</gsx:col4><gsx:col5>'
+	+clientphone+'</gsx:col5><gsx:col6>'+clientemail+'</gsx:col6><gsx:col7>'+clientstreetaddress+'</gsx:col7><gsx:col8>'+clientcity+'</gsx:col8><gsx:col9>'+clientstate
+	+'</gsx:col9><gsx:col10>'+'USA'+'</gsx:col10><gsx:col11>'+'NA'+'</gsx:col11><gsx:col12>NA</gsx:col12><gsx:col13>NA</gsx:col13><gsx:col14>NA</gsx:col14><gsx:col15>NA</gsx:col15><gsx:col16>NA</gsx:col16></entry>';
+	Ti.API.info('xmldatastring to POST: '+xmldatastring);
+	var xhr =  Titanium.Network.createHTTPClient({
+    onload: function() {
+    	try {
+    		Ti.API.info(this.responseText); 
+    	} catch(e){
+    		Ti.API.info("cathing e: "+JSON.stringify(e));
+    	}     
+    },
+    onerror: function(e) {
+    	Ti.API.info("error e: "+JSON.stringify(e));
+    }
+});
+	xhr.open("POST", 'https://spreadsheets.google.com/feeds/list/'+sid+'/od6/private/full');
+	xhr.setRequestHeader("Content-type", "application/atom+xml");
+	xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuth.getAccessToken());
+	xhr.send(xmldatastring);
+	Ti.API.info('done POSTed');
+
+
+};
+
+Alloy.Globals.checkNetworkAndGoogleAuthorized = function(sid){
+	var url = "https://spreadsheets.google.com/feeds/list/"+sid+"/od6/public/basic?hl=en_US&alt=json";
+	var xhr = Ti.Network.createHTTPClient({
+	    onload: function(e) {
+	    try {
+	    		Ti.API.info("network is good. Replies are: "+this.responseText);
+	    		Alloy.Globals.checkGoogleisAuthorized();
+	    	} catch(e){
+				Ti.API.info("cathing e: "+JSON.stringify(e));
+			}
+		}
+	});
+	xhr.onerror = function(e){
+		alert("No network connection. Information update will NOT be immediately synchronized to central location. Please take note.");
+	};
+	xhr.open("GET", url);
+	xhr.send();
+};

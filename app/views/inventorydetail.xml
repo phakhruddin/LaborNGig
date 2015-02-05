@@ -1,6 +1,6 @@
 <Alloy>
 	<Model src="dummy" />
-  <Window id="inventorydetail_window" title="inventory Detail" backgroundImage="page3_750x1334-emboss.png" backgroundColor="transparent">
+  <Window id="inventorydetail_window" title="inventory Detail" backgroundImage="blblue-bg1.png" backgroundColor="transparent">
 	  <TableView id="inventorydetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="inventoryDetails">
 		  <TableViewRow id="inventorydetail_row" Title="inventoryDetail">

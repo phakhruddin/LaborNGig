@@ -13,7 +13,7 @@ $.clientlist_window.addEventListener("click", function(e){
 		var clientController = Alloy.createController('clientdetail',{
 			title: title
 		});
-		clientController.openMainWindow($.tab_client);
+		clientController.openMainWindow($.tab_clientlist);
 		//Alloy.Globals.createController('clientdetail','tab_client')
 });
 

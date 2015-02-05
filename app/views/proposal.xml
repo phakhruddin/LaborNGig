@@ -1,13 +1,24 @@
 <Alloy>
-<Collection src="proposal"/>
  <Tab id="tab_proposal" title="proposal">
-  <Window id="proposal_window" backgroundImage="page3_750x1334-emboss.png" title="proposal List">
-	  <TableView id="proposal_table" backgroundColor="transparent" dataCollection="proposal" search="search_history" dataTransform="transformFunction" filterAttribute="title">
-		<SearchBar id="search_history" height="43" />
-		  <TableViewRow id="proposal_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">
-		  	<Label color="#D8D8BF" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
+	  <Window id="proposal_window" backgroundImage="blackgreen-bg1.png" title="proposal List">
+	  <TableView id="proposal_table" backgroundColor="transparent">
+	  	 <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="proposalenter_row" backgroundColor="transparent" opacity="0" Title="proposal Entry">
+		  	<Label id="proposalenter_label" color="white" top="5" left="50" text="Enter proposal >"/>
 		  </TableViewRow>
+		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="pendingproposal_row" backgroundColor="transparent" opacity="0" Title="Pending Proposal">
+		  	<Label id="pendingproposal_label" color="white" top="5" left="50" text="Pending Proposal >"/>
+		  </TableViewRow>
+		  <TableViewRow id="submittedproposal_row" backgroundColor="transparent" opacity="0" Title="Pending Proposal">
+		  	<Label id="submittedproposal_label" color="white" top="5" left="50" text="Submitted Proposal >"/>
+		  </TableViewRow>
+		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="proposallist_row" backgroundColor="transparent" opacity="0" Title="proposal Entry">
+		  	<Label id="proposallist_label" color="#EEE8AA" top="5" left="50" text="All Proposals >"/>
+		  </TableViewRow>
+		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
 	  </TableView>
-  </Window>
+	  </Window>
   </Tab>
 </Alloy>

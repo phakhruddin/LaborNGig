@@ -1,5 +1,5 @@
 <Alloy>
-  <Window id="enterproject_window" backgroundImage="bg-green1.png" title="Enter Project">
+  <Window id="enterproject_window" backgroundImage="blackq-bg2.png" title="Enter Project">
 	  <TableView id="enterproject_table" backgroundColor="transparent" >
 	  	<TableViewRow id="titleprojectinput" backgroundColor="transparent" opacity="0" color="white" Title="Client project">
 	  		<Label id="titleprojectinput_label" color="white" top="5" left="50" text="Enter project detail below"/>

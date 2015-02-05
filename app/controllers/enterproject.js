@@ -2,7 +2,8 @@ exports.openMainWindow = function(_tab) {
   _tab.open($.enterproject_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
   
-	Alloy.Globals.checkGoogleisAuthorized();
+	Alloy.Globals.checkNetworkAndGoogleAuthorized('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');  
+	//Alloy.Globals.checkGoogleisAuthorized();
 	  
   	$.save_clientlastname_button.addEventListener('click', function(_e) {
     $.clientlastname_tf.blur();
@@ -159,7 +160,7 @@ exports.openMainWindow = function(_tab) {
 });
 	xhr.open("POST", 'https://spreadsheets.google.com/feeds/list/1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w/od6/private/full');
 	xhr.setRequestHeader("Content-type", "application/atom+xml");
-	xhr.setRequestHeader("Authorization", 'Bearer '+ googleAuth.getAccessToken());
+	xhr.setRequestHeader("Authorization", 'Bearer '+ Alloy.Globals.googleAuthSheet.getAccessToken());
 	xhr.send(xmldatastring);
 	Ti.API.info('done POSTed');
 
