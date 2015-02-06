@@ -6,6 +6,13 @@ exports.openMainWindow = function(_tab) {
 
 };
 
+$.proposalenter_row.addEventListener("click", function(e){
+		Alloy.Globals.openDetail(e);
+		var title = e.row.title;
+		var clientController = Alloy.createController('enterproposal');
+		clientController.openMainWindow($.tab_proposal);
+});
+
 $.proposallist_row.addEventListener("click", function(e){
 		Alloy.Globals.openDetail(e);
 		var title = e.row.title;

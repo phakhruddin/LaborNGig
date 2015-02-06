@@ -5,12 +5,18 @@ $.location.addEventListener ("click", function(e){
   	tabViewOneChildController.openMainWindow($.tab_one);	
 });
 
+function openNextTab(item){
+	var sid = Titanium.App.Properties.getString(item,"none");
+	Ti.API.info("sid for "+ item +" : "+sid);
+	Alloy.Globals.getPrivateData(sid,item);
+	var scheduleController = Alloy.createController(item);
+	scheduleController.openMainWindow($.tab_one);	
+}
+
 $.project.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getPrivateData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
-	//Alloy.Globals.getData('1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI','project');
-  	var tabViewOneChildController = Alloy.createController("project");
-  	tabViewOneChildController.openMainWindow($.tab_one);	
+	var item = e.row.id;
+	openNextTab(item);
 });
 
 $.schedule.addEventListener ("click", function(e){
@@ -21,18 +27,15 @@ $.schedule.addEventListener ("click", function(e){
  	
 $.client.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	//Alloy.Globals.getData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w','client');
-	Alloy.Globals.getPrivateData('1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w','client');
-	var scheduleController = Alloy.createController("client");
-	scheduleController.openMainWindow($.tab_one);	
+	Ti.API.info("e info : "+JSON.stringify(e));
+	var item = e.row.id;
+	openNextTab(item);
 });
 
 $.invoice.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getPrivateData('1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk','invoice');
-	//Alloy.Globals.getData('1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk','invoice');
-	var scheduleController = Alloy.createController("invoice");
-	scheduleController.openMainWindow($.tab_one);	
+	var item = e.row.id;
+	openNextTab(item);
 });
 
 $.supplier.addEventListener ("click", function(e){
@@ -43,18 +46,14 @@ $.supplier.addEventListener ("click", function(e){
 
 $.inventory.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getPrivateData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
-	//Alloy.Globals.getData('1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA','inventory');
-  	var tabViewOneChildController = Alloy.createController("inventory");
-  	tabViewOneChildController.openMainWindow($.tab_one);	
+	var item = e.row.id;
+	openNextTab(item);
 });
 
 $.proposal.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	Alloy.Globals.getPrivateData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
-	//Alloy.Globals.getData('1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk','proposal');
-  	var tabViewOneChildController = Alloy.createController("proposal");
-  	tabViewOneChildController.openMainWindow($.tab_one);	
+	var item = e.row.id;
+	openNextTab(item);
 });
 
 $.enterdata.addEventListener ("click", function(e){

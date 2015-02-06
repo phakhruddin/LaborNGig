@@ -11,6 +11,15 @@
 // Alloy.Globals.someGlobalFunction = function(){};
 
 //default var
+//Initialization.
+//Get Licensed
+var projectsid = '1FMGrlYtWL6SUQuD-RynfEU_1kf5Yf6__ysrWsY2aAJI'; Titanium.App.Properties.setString('project',projectsid);
+var clientsid = '1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w'; Titanium.App.Properties.setString('client',clientsid);
+var invoicesid = '1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk'; Titanium.App.Properties.setString('invoice',invoicesid);
+var inventorysid = '1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA'; Titanium.App.Properties.setString('inventory',inventorysid);
+var proposalsid = '1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk'; Titanium.App.Properties.setString('proposal',proposalsid);
+
+
 			
 Alloy.Globals.writeFile = function (content, filename){
 			var file = Ti.Filesystem.getFile(
@@ -250,7 +259,8 @@ Alloy.Globals.getPrivateData = function(sid,type) {
 					col15 :  entry.item(i).getElementsByTagName("gsx:col15").item(0).text || "none",
 					col16 :  entry.item(i).getElementsByTagName("gsx:col16").item(0).text || "none",		
 				});	
-				}
+				dataModel.save();
+			}
 			var file = Ti.Filesystem.getFile(
 				Ti.Filesystem.tempDirectory, thefile
 			);

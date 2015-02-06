@@ -1,0 +1,15 @@
+<Alloy>
+<Collection src="client"/>
+  <Tab id="tab_proposalcust" title="Client List ">
+	  <Window id="proposalcust_window" backgroundImage="purple-bg1.png" title="clientlist List">
+	  	<Picker id="picker" top="50" backgroundColor="transparent" selectionIndicator="true" useSpinner="true">
+	  	<PickerColumn id="clientlist_table"  backgroundColor="transparent" dataCollection="client" search="search_history" dataTransform="transformFunction" filterAttribute="title">
+		  	<!--SearchBar id="search_history" height="43" /-->
+				<PickerRow id="clientlist_row" backgroundColor="transparent" opacity="0" color="black" title="{title}">
+					<!--Label color="white" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/-->
+				</PickerRow>
+		</PickerColumn>
+		</Picker>
+	  </Window>
+  </Tab>
+</Alloy>
