@@ -1,6 +1,6 @@
 <Alloy>
  <Tab id="tab_enterproposal" title="enterproposal">
-	  <Window id="enterproposal_window" backgroundImage="blackq-bg2.png" title="enterproposal List">
+	  <Window id="enterproposal_window" backgroundImage="bg-black1.png" title="enterproposal List">
 	  <TableView id="enterproposal_table" backgroundColor="transparent">
 		  <TableViewRow id="proposalcustomerdetail_row" backgroundColor="transparent" opacity="0" Title="Customer Detail">
 		  	<Label id="proposalcustomerdetail_label" color="white" top="5" left="50" text="Customer Detail >"/>

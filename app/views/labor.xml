@@ -1,6 +1,6 @@
 <Alloy>
 <Collection src="labor"/>
-  <Window id="labor_window" backgroundImage="bg-black2.png" title="Field Tech/Labor List">
+  <Window id="labor_window" backgroundImage="bg-black1.png" title="Field Tech/Labor List">
 	  <TableView id="labor_table" backgroundColor="transparent" dataCollection="labor" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		<SearchBar id="search_history" height="43" />
 		  <TableViewRow id="labor_row" backgroundColor="transparent" opacity="0"  color="transparent" title="{title}">

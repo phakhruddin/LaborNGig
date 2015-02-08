@@ -1,5 +1,5 @@
 <Alloy>
-  <Window id="enterinvoice_window" backgroundImage="bg-black2.png" title="Invoice Entry">
+  <Window id="enterinvoice_window" backgroundImage="bg-black1.png" title="Invoice Entry">
 	  <TableView id="enterinvoice_table" backgroundColor="transparent" >
 	  		  	<TableViewRow id="titleinvoiceinput" backgroundColor="transparent" opacity="0" color="white" Title="Client Invoice">
 	  		<Label id="titleinvoiceinput_label" color="white" top="5" left="50" text="Enter invoice detail below"/>

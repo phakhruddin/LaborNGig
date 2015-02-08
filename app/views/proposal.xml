@@ -1,6 +1,6 @@
 <Alloy>
  <Tab id="tab_proposal" title="proposal">
-	  <Window id="proposal_window" backgroundImage="blackgreen-bg1.png" title="proposal List">
+	  <Window id="proposal_window" backgroundImage="bg-black1.png" title="proposal List">
 	  <TableView id="proposal_table" backgroundColor="transparent">
 	  	 <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
 		  <TableViewRow id="proposalenter_row" backgroundColor="transparent" opacity="0" Title="proposal Entry">

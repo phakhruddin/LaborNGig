@@ -1,6 +1,6 @@
 <Alloy>
  <Tab id="tab_two" title="LOC">
-  <Window id="location_window" backgroundImage="bg-black2.png" title="Location">
+  <Window id="location_window" backgroundImage="bg-black1.png" title="Location">
 	  <TableView id="location_table" backgroundColor="transparent">
 		  <TableViewRow id="updateloc" backgroundColor="transparent" opacity="0" Title="updateloc">
 		   		  <Label id="label_updateloc" color="white" top="5" left="50" text="Update Your Location >"/>

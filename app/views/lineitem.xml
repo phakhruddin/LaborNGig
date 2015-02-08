@@ -1,6 +1,6 @@
 <Alloy>
  <Tab id="tab_lineitem" title="lineitem">
-	  <Window id="lineitem_window" backgroundImage="blackgreen-bg1.png" title="lineitem List">
+	  <Window id="lineitem_window" backgroundImage="bg-black1.png" title="lineitem List">
 	  <TableView id="lineitem_table" backgroundColor="transparent">
 		  <TableViewRow id="proposalcustomerdetail_row" backgroundColor="transparent" opacity="0" Title="Customer Detail"/>
 	  </TableView>

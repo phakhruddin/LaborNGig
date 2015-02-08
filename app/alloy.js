@@ -236,6 +236,15 @@ Alloy.Globals.getPrivateData = function(sid,type) {
 			var feed = xml.documentElement.getElementsByTagName("feed");
 			var entry = xml.documentElement.getElementsByTagName("entry"); 
 			console.log("this entry length is: " +entry.length);
+			// deleting existing entry in database start
+			(type == 'client') && Alloy.Collections.client.deleteAll();
+			(type == 'project') && Alloy.Collections.project.deleteAll();
+			(type == 'inventory') && Alloy.Collections.inventory.deleteAll();
+			(type == 'invoice') && Alloy.Collections.invoice.deleteAll();
+			(type == 'supplier') && Alloy.Collections.supplier.deleteAll();
+			(type == 'proposal') && Alloy.Collections.proposal.deleteAll();
+			(type == 'labor') && Alloy.Collections.labor.deleteAll();
+			// deleting existing entry done
 			for (i=1;i<entry.length;i++){
 				var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
 				var col2 = entry.item(i).getElementsByTagName("gsx:col2").item(0).text;

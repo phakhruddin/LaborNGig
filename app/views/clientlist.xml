@@ -1,7 +1,7 @@
 <Alloy>
 <Collection src="client"/>
   <Tab id="tab_clientlist" title="clientlist">
-	  <Window id="clientlist_window" backgroundImage="purple-bg1.png" title="clientlist List">
+	  <Window id="clientlist_window" backgroundImage="bg-black1.png" title="clientlist List">
 	  	<TableView id="clientlist_table"  backgroundColor="transparent" dataCollection="client" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		  	<SearchBar id="search_history" height="43" />
 				<TableViewRow id="clientlist_row" backgroundColor="transparent" opacity="0" color="transparent" title="{title}">

@@ -3,7 +3,7 @@ exports.openMainWindow = function(_tab) {
   Ti.API.info("This is child widow client.js" +JSON.stringify(_tab));
 //  	var activity = $.index.getActivity();
 //	activity.invalidateOptionsMenu(); //force reload of menus	
-	$.clientlist_table.search = $.search_history;
+	$.proposalcust_table.search = $.search_history;
 	Alloy.Collections.client.fetch();	
 };
 /*

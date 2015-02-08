@@ -1,6 +1,6 @@
 <Alloy>
  <Tab id="tab_project" title="project">
-  <Window id="project_window" backgroundImage="blackredsq-bg1.png" title="project List">
+  <Window id="project_window" backgroundImage="bg-black1.png" title="project List">
 	  <TableView id="project_table" backgroundColor="transparent">
 	  	 <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
 		  <TableViewRow id="projectenter_row" backgroundColor="transparent" opacity="0" Title="Project Entry">

@@ -1,6 +1,6 @@
 <Alloy>
 	<Model src="dummy" />
-  <Window id="projectdetail_window" title="project Detail" backgroundImage="blackredsq-bg1.png" backgroundColor="transparent">
+  <Window id="projectdetail_window" title="project Detail" backgroundImage="bg-black1.png">
 	  <TableView id="projectdetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="ProjectDetails">
 		  <TableViewRow id="projectdetail_row" Title="projectDetail">

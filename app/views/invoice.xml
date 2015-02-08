@@ -1,7 +1,7 @@
 <Alloy>
 	<Collection src="invoice"/>
  <Tab id="tab_invoice" title="invoice">
-  <Window id="invoice_window" backgroundImage="blblue-bg1.png"  title="Invoice List">
+  <Window id="invoice_window" backgroundImage="bg-black1.png"  title="Invoice List">
 	  <TableView id="invoice_table" backgroundColor="transparent">
 	  	 <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
 		  <TableViewRow id="invoiceenter_row" backgroundColor="transparent" opacity="0" Title="invoice Entry">
