@@ -1,12 +1,21 @@
 <Alloy>
+	<Model src="labor"/>
+	<Tab id="schedule_tab">
   <Window id="schedule_window" backgroundImage="bg-black1.png" title="Calendar">
-	  <TableView id="table" backgroundColor="transparent" >
+	  <TableView id="table" backgroundColor="transparent"  >
 		  <TableViewRow id="events" backgroundColor="transparent" opacity="0" Title="events">
 		   		  <Label id="label_events" color="orange" top="5" left="50" text="Check Events >"/>
 		  </TableViewRow>
 		  <TableViewRow id="createevent" backgroundColor="transparent" opacity="0" Title="createevent">
-		   		  <Label id="label_createevent" color="orange" top="5" left="50" text="Create Event >"/>
+		   		  <Label id="label_createevent" color="orange" top="5" left="50" text="Create Event Now >"/>
+		  </TableViewRow>
+		  <TableViewRow id="createeventfuture" backgroundColor="transparent" opacity="0" Title="createevent">
+		   		  <Label id="label_createeventfuture" color="orange" top="5" left="50" text="Create Event >"/>
+		  </TableViewRow>
+		  <TableViewRow id="createmultipleevent" backgroundColor="transparent" opacity="0" Title="createmultipleevent">
+		   		  <Label id="label_createmultipleevent" color="orange" top="5" left="50" text="Create Multiple Event >"/>
 		  </TableViewRow>
 	  </TableView>
   </Window>
+ </Tab>
 </Alloy>

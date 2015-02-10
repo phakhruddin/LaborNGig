@@ -9,7 +9,7 @@
 		   		  <Label id="label_schedule" color="orange" top="5" left="50" text="Schedule >"/>
 		   </TableViewRow>
 	      <TableViewRow id="location" backgroundColor="transparent" Title="Location">
-		   		  <Label id="label_location" color="#D8D8BF" top="5" left="50" text="Where is the labor today? >"/>
+		   		  <Label id="label_location" color="#D8D8BF" top="5" left="50" text="Labor Location >"/>
 		   </TableViewRow>
 		   <TableViewRow id="project" backgroundColor="transparent" Title="Project">
 		   		  <Label id="label_project" color="yellow" top="5" left="50" text="Projects >"/>

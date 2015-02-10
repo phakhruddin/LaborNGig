@@ -13,7 +13,21 @@ exports.openMainWindow = function(_tab) {
 		Ti.API.info("in open_button click event title :"+e.row.Title);	
 		CreateEvents();
 	});
-  
+	
+  $.createeventfuture.addEventListener ("click", function(e){
+		Ti.API.info('index = ' + JSON.stringify(e.index));
+		Ti.API.info("in open_button click event title :"+e.row.Title);	
+		Alloy.Globals.createController('createevent',$.schedule_tab);
+	});
+	
+  $.createmultipleevent.addEventListener ("click", function(e){
+		Ti.API.info('index = ' + JSON.stringify(e.index));
+		Ti.API.info("in open_button click event title :"+e.row.Title);	
+		multiplepicker();
+	});
+ 
+};
+
   var osname = Ti.Platform.osname;
   
   function CheckEvents() {
@@ -227,7 +241,6 @@ exports.openMainWindow = function(_tab) {
 	//win.open();
 	}
 
-
   function CreateEvents() {
     function printEventDetails(eventID) {
 	    Ti.API.info('eventID:' + eventID);
@@ -386,5 +399,179 @@ exports.openMainWindow = function(_tab) {
 	
 	}
 
+  function multiplepicker(){
+	// Appcelerator Titanium (JS) code to produce multiple selection type data entry in a single window.
+// via @CJ_Reed
+// and Dan Tamas : http://cssgallery.info/making-a-combo-box-in-titanium-appcelerator-code-and-video
 
-};
+
+
+	var win = Titanium.UI.createWindow({
+		fullscreen: true,
+		tabBarHidden : true,
+		navBarHidden: false
+	});	
+
+ if(Ti.Platform.osname == 'android'){
+		alert("do nothing this is android");
+   	} else {
+	   	var btnBack = Ti.UI.createButton({ 
+			title: '< Back', 
+			top: 5,
+			left: 10
+		});
+	   	var win1 = Titanium.UI.iOS.createNavigationWindow({
+			Title: "Event",
+			backgroundColor: "transparent",
+	   	  	window: win
+	    });
+	    win1.add(btnBack);
+	    btnBack.addEventListener("click", function(_tab) { 
+			console.debug("closing map" +_tab);
+	//		Ti.API.info("tab:" + JSON.stringify(_tab));
+			win1.close();
+	});
+   }; 
+
+// build custom tableView data/layout
+var array = [];
+var titleRow = Titanium.UI.createTableViewRow({height:46, className:'titleRow'}); 
+var valueRow = Titanium.UI.createTableViewRow({height:46, className:'valueRow'}); 
+var dateRow = Titanium.UI.createTableViewRow({height:46, className:'dateRow'});
+var enddateRow = Titanium.UI.createTableViewRow({height:46, className:'enddateRow'});
+var titleLabel = Ti.UI.createLabel({color:'#000000', text:"Title", font:{fontSize:20, fontWeight:'bold'}, top:8, left:12, height:24, width:99});
+var titleText = Titanium.UI.createTextField({value:"  ", color:'#336699', borderColor:'#888', borderWidth:1, font:{fontSize:16, fontWeight:'bold'},top:8, left:100, height:32, width:184});
+var valueLabel = Ti.UI.createLabel({color:'#000000', text:"Labor", font:{fontSize:20, fontWeight:'bold'}, top:8, left:12, height:24, width:170});
+var dateLabel = Ti.UI.createLabel({color:'#000000', text:"Start Date", font:{fontSize:20, fontWeight:'bold'}, top:8, left:12, height:24, width:170});
+var valueData = Ti.UI.createLabel({color:'#3D4460', text:"", font:{fontSize:17, fontWeight:'normal'}, top:11, left:112, height:20, width:180, textAlign:'right'});	
+var dateData = Ti.UI.createLabel({color:'#3D4460', text:"", font:{fontSize:17, fontWeight:'normal'}, top:11, left:102, height:20, width:180, textAlign:'right'});	
+var enddateLabel = Ti.UI.createLabel({color:'#000000', text:"End Date", font:{fontSize:20, fontWeight:'bold'}, top:8, left:12, height:24, width:170});
+var enddateData = Ti.UI.createLabel({color:'#3D4460', text:"", font:{fontSize:17, fontWeight:'normal'}, top:11, left:102, height:20, width:180, textAlign:'right'});	
+titleRow.add(titleLabel);
+titleRow.add(titleText);
+valueRow.add(valueLabel);
+valueRow.add(valueData);
+dateRow.add(dateLabel);
+dateRow.add(dateData);
+enddateRow.add(enddateLabel);
+enddateRow.add(enddateData);
+array.push(titleRow);
+array.push(valueRow);
+array.push(dateRow);
+array.push(enddateRow);
+
+// view initialisation
+var tableView = Titanium.UI.createTableView({data:array, style:Titanium.UI.iPhone.TableViewStyle.GROUPED});
+var pickerView = Titanium.UI.createView({height:248,bottom:-248});
+var datePickerView = Titanium.UI.createView({height:248,bottom:-248});
+var enddatePickerView = Titanium.UI.createView({height:248,bottom:-248});
+
+  var thelabor = Alloy.Collections.instance('labor');
+  thelabor.fetch();
+  var laborjson = thelabor.toJSON();
+  console.log("laborjson.length "+laborjson.length);
+  console.log("laborjson "+laborjson);
+  console.log("laborjson[0].col2 "+laborjson[0].col2);
+  
+  
+var labor = [ 'John', 'Alex', 'Marie', 'Eva' ];
+var Values = [];
+var pickerValues = [];
+var picker = Titanium.UI.createPicker({top:0});
+picker.selectionIndicator=true;
+
+for( var i=0; i < laborjson.length; i++){
+  var Values = Ti.UI.createPickerRow({
+    title: laborjson[i].col2+' '+laborjson[i].col3
+  });
+  pickerValues.push(Values);
+}
+
+Ti.API.info("PickerValues are : "+JSON.stringify(pickerValues));
+picker.add(pickerValues);
+pickerView.add(picker);
+
+// date picker initialisation
+var datePicker = Titanium.UI.createPicker({top:0, type:Titanium.UI.PICKER_TYPE_DATE_AND_TIME});
+datePicker.selectionIndicator=true;
+datePickerView.add(datePicker);
+
+var enddatePicker = Titanium.UI.createPicker({top:0, type:Titanium.UI.PICKER_TYPE_DATE_AND_TIME});
+enddatePicker.selectionIndicator=true;
+enddatePickerView.add(enddatePicker);
+
+// animations
+var slideIn =  Titanium.UI.createAnimation({bottom:-43});
+var slideOut =  Titanium.UI.createAnimation({bottom:-251});
+
+// event functions
+tableView.addEventListener('click', function(eventObject){
+	if (eventObject.rowData.className == "valueRow")
+	{
+		titleText.blur();
+		datePickerView.animate(slideOut);
+		enddatePickerView.animate(slideOut);	
+		pickerView.animate(slideIn);		
+	}
+	else if (eventObject.rowData.className == "titleRow")
+	{
+		pickerView.animate(slideOut);
+		datePickerView.animate(slideOut);
+		enddatePickerView.animate(slideOut);
+		titleText.focus();	
+	}
+	else if (eventObject.rowData.className == "dateRow")
+	{
+		pickerView.animate(slideOut);
+		datePickerView.animate(slideIn);
+		enddatePickerView.animate(slideOut);
+		titleText.blur();	
+	}
+	else if (eventObject.rowData.className == "enddateRow")
+	{
+		pickerView.animate(slideOut);
+		datePickerView.animate(slideOut);
+		enddatePickerView.animate(slideIn);
+		titleText.blur();	
+	};
+});
+
+datePicker.addEventListener('change',function(e)
+{
+	dateData.text = e.value;
+	tableView.setData(array);
+	Ti.API.info("dateData: "+JSON.stringify(dateData));
+});
+
+enddatePicker.addEventListener('change',function(e)
+{
+	enddateData.text = e.value;
+	tableView.setData(array);
+	Ti.API.info("enddateData: "+JSON.stringify(enddateData));
+});
+
+picker.addEventListener('change',function(e)
+{
+	valueData.text = picker.getSelectedRow(0).title;;
+	tableView.setData(array);
+});
+
+titleText.addEventListener('focus',function() {
+	pickerView.animate(slideOut);
+	datePickerView.animate(slideOut);
+	enddatePickerView.animate(slideOut);
+});
+
+// build display
+win.add(tableView);
+win.add(pickerView);
+win.add(datePickerView);
+win.add(enddatePickerView);
+
+	if(Ti.Platform.osname == 'android'){
+		win.open();
+	} else {
+		win1.open();
+	};
+
+}

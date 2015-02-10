@@ -67,9 +67,9 @@ Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
   		var mapview = Map.createView({
 	    mapType: Titanium.Map.STANDARD_TYPE,
 	    region: {latitude:latitude, longitude:longitude,
-	            latitudeDelta:0.01, longitudeDelta:0.01},
+	            latitudeDelta:0.1, longitudeDelta:0.1},
 	    animate:true,
-	    regionFit:true,
+	    regionFit:false,
 	    userLocation:true,
 	    annotations:[name]
 	});
@@ -83,16 +83,49 @@ Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
 	    pincolor:Map.ANNOTATION_RED,
 	    myid:1 // Custom property to uniquely identify this annotation.
 		});
-	
+		
+		var addr = [];
+		var addrdata = [ {latitude: 42.963093,longitude:  -88.221641,title: 'James Deen'},
+		{latitude: 42.962305,longitude:  -87.993815,title: 'Fahid Khan'},
+		{latitude: 42.920011,longitude:  -88.225428,title: 'Nancy Om'},
+		{latitude: 42.977103,longitude:  -88.235138 ,title: 'Eric Cole'}];
+		
+		for (i=0;i<addrdata.length;i++){
+			addr.push({
+				latitude: addrdata[i].latitude,
+				longitude: addrdata[i].longitude,
+				title: addrdata[i].title,
+				pincolor: Map.ANNOTATION_RED,
+				myid:i,
+				animate: 'true' 
+			});
+		};
+		
+		console.log("addrdata are: "+JSON.stringify(addrdata));
+	    
+	    var addrAnnotations = [];
+		_.each(addr, function (addr) {
+		  addrAnnotations.push(Map.createAnnotation({
+		    title: addr.title,
+		    pincolor: addr.pincolor,
+		    latitude: addr.latitude,
+		    longitude: addr.longitude,
+		    myid: addr.myid
+		  }));  
+		});
+		
+			console.log("addrAnnotations are: "+JSON.stringify(addrAnnotations));
+
 		var mapview = Map.createView({
 	    mapType: Map.NORMAL_TYPE,
 	    region: {latitude:latitude, longitude:longitude,
-	            latitudeDelta:0.01, longitudeDelta:0.01},
+	            latitudeDelta:1, longitudeDelta:1},
 	    animate:true,
-	    regionFit:true,
 	    userLocation:true,
-	    annotations:[tollPlaza0]
+	    regionFit:false,
+	    annotations:addrAnnotations
 	});
+	
 	}
 	var win = Titanium.UI.createWindow({
 		fullscreen: true,
@@ -122,7 +155,7 @@ Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
 	});
    }; 
 	// Handle click events on any annotations on this map.
-	listener = function(evt){Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid);};
+	listener = function(evt){Ti.API.info("Annotation " + evt.title + " clicked, id: " + evt.annotation.myid +"  lat/lon: "+evt.annotation.latitude+"/"+evt.annotation.longitude);};
 	mapview.addEventListener('click', listener);
 	win.add(mapview);
 	//win.open();
@@ -218,7 +251,7 @@ Alloy.Globals.getData = function(sid,type) {
 
 Alloy.Globals.createController = function(controller,sourcetab){
 		var newController = Alloy.createController(controller);
-		newController.openMainWindow('$.'+sourcetab);
+		newController.openMainWindow(sourcetab);
 };
 
 Alloy.Globals.getPrivateData = function(sid,type) {	
