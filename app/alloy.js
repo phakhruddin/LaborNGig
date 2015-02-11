@@ -85,11 +85,23 @@ Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
 		});
 		
 		var addr = [];
-		var addrdata = [ {latitude: 42.963093,longitude:  -88.221641,title: 'James Deen'},
-		{latitude: 42.962305,longitude:  -87.993815,title: 'Fahid Khan'},
-		{latitude: 42.920011,longitude:  -88.225428,title: 'Nancy Om'},
-		{latitude: 42.977103,longitude:  -88.235138 ,title: 'Eric Cole'}];
-		
+		if (latitude === "all" || longitude === "all" || title === "all") {
+			var addrdata = [];
+			// fetch the labor database
+			var thelabor = Alloy.Collections.instance('labor');
+  			(thelabor) && thelabor.fetch();
+  			var laborjson = thelabor.toJSON();
+  			for( var i=0; i < laborjson.length; i++){
+  				var title = laborjson[i].col2+' '+laborjson[i].col3;
+  				var latitude = laborjson[i].col8.trim();
+  				var longitude = laborjson[i].col9.trim();
+  				addrdata.push({latitude: latitude,longitude:  longitude,title: title});
+  			}
+  			console.log("addrdata after push: "+JSON.stringify(addrdata));
+		} else {
+			var addrdata = [ {latitude: latitude,longitude:  longitude,title: title} ];
+		}
+				
 		for (i=0;i<addrdata.length;i++){
 			addr.push({
 				latitude: addrdata[i].latitude,
@@ -119,7 +131,7 @@ Alloy.Globals.UpdateMap = function(latitude,longitude,title) {
 		var mapview = Map.createView({
 	    mapType: Map.NORMAL_TYPE,
 	    region: {latitude:latitude, longitude:longitude,
-	            latitudeDelta:1, longitudeDelta:1},
+	            latitudeDelta:0.8, longitudeDelta:0.8},
 	    animate:true,
 	    userLocation:true,
 	    regionFit:false,

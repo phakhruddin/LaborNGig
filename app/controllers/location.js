@@ -16,6 +16,6 @@ exports.openMainWindow = function(_tab) {
 	
   $.checkallloc.addEventListener ("click", function(e){
 		Alloy.Globals.openDetail(e);
-		Alloy.Globals.UpdateMap('42.962305','-87.993815',"None");
+		Alloy.Globals.UpdateMap('all','all',"all");
 	});
 };
