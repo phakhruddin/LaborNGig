@@ -18,6 +18,8 @@ var clientsid = '1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w'; Titanium.App.Pro
 var invoicesid = '1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk'; Titanium.App.Properties.setString('invoice',invoicesid);
 var inventorysid = '1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA'; Titanium.App.Properties.setString('inventory',inventorysid);
 var proposalsid = '1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk'; Titanium.App.Properties.setString('proposal',proposalsid);
+var mastersid = '1WUtkBcD1q3ezozI98w0sq42rl1TwIOTMq25Yayj-sEk'; Titanium.App.Properties.setString('master',mastersid);
+
 
 
 			
@@ -289,6 +291,7 @@ Alloy.Globals.getPrivateData = function(sid,type) {
 			(type == 'supplier') && Alloy.Collections.supplier.deleteAll();
 			(type == 'proposal') && Alloy.Collections.proposal.deleteAll();
 			(type == 'labor') && Alloy.Collections.labor.deleteAll();
+			(type == 'master') && Alloy.Collections.master.deleteAll();
 			// deleting existing entry done
 			for (i=1;i<entry.length;i++){
 				var col1 = entry.item(i).getElementsByTagName("gsx:col1").item(0).text;
@@ -381,7 +384,7 @@ var googleAuthSheet = new GoogleAuth({
 	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
 	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
 	propertyName : 'googleToken',
-	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds'],
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
 	quiet: false
 });
 
@@ -389,7 +392,15 @@ Alloy.Globals.googleAuthSheet = new GoogleAuth({
 	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
 	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
 	propertyName : 'googleToken',
-	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds'],
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	quiet: false
+});
+
+Alloy.Globals.googleAuthCalendar = new GoogleAuth({
+	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
+	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
+	propertyName : 'googleToken',
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
 	quiet: false
 });
 

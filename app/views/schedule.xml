@@ -15,6 +15,9 @@
 		  <TableViewRow id="createmultipleevent" backgroundColor="transparent" opacity="0" Title="createmultipleevent">
 		   		  <Label id="label_createmultipleevent" color="orange" top="5" left="50" text="Create Multiple Event >"/>
 		  </TableViewRow>
+		  <TableViewRow id="sharedcalendar" backgroundColor="transparent" opacity="0" Title="sharedcalendar">
+		   		  <Label id="label_sharedcalendar" color="orange" top="5" left="50" text="Shared Calendar Event >"/>
+		  </TableViewRow>
 	  </TableView>
   </Window>
  </Tab>

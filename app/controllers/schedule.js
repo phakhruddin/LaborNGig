@@ -25,6 +25,19 @@ exports.openMainWindow = function(_tab) {
 		Ti.API.info("in open_button click event title :"+e.row.Title);	
 		multiplepicker();
 	});
+	
+  $.sharedcalendar.addEventListener ("click", function(e){
+		Ti.API.info('index = ' + JSON.stringify(e.index));
+		Ti.API.info("in open_button click event title :"+e.row.Title);
+			googleAuthCalendar;
+			console.log('Access Token for Calendar is: ' + googleAuthCalendar.getAccessToken());
+			googleAuthCalendar.isAuthorized(function() {
+				console.log('Access Token: ' + googleAuthCalendar.getAccessToken());
+			}, function() {
+				console.log('Authorized first, see next window: ');
+			});
+		Alloy.Globals.createController('sharedcalendar',$.schedule_tab);
+	});
  
 };
 
@@ -575,3 +588,12 @@ win.add(enddatePickerView);
 	};
 
 }
+
+var GoogleAuth = require('googleAuth');
+var googleAuthCalendar = new GoogleAuth({
+	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
+	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
+	propertyName : 'googleToken',
+	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	quiet: false
+});
