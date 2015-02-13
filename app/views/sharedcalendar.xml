@@ -12,6 +12,9 @@
 		  <TableViewRow id="url1" backgroundColor="transparent" opacity="0" color="white" Title="Get Data Input">
 		  	<Label id="url1_label" color="yellow" top="5" left="50" text="url feed from cloud"/>
 		  </TableViewRow>
+		  <TableViewRow id="createevent" backgroundColor="transparent" opacity="0" color="white" Title="Create Event">
+		  	<Label id="createevent_label" color="yellow" top="5" left="50" text="Create Event"/>
+		  </TableViewRow>
 	  </TableView>
   </Window>
 </Alloy>

@@ -24,9 +24,19 @@ exports.openMainWindow = function(_tab) {
 		getSharedCalendarData(url);
  	});
  	
- 	 $.url1.addEventListener('click', function() {
+ 	$.url1.addEventListener('click', function() {
     	getUrlMaster();
 		//getSharedCalendarData(url);
+ 	});
+ 	
+ 	$.createevent.addEventListener('click', function() {
+ 		googleAuthCalendar.isAuthorized(function() {
+			console.log('Access Token on event creation: ' + googleAuthCalendar.getAccessToken());
+			postCreateEvent();
+		}, function() {
+			console.log('Authorized first before event creation, see next window: ');
+		});
+    	
  	});
 		 	
 };
@@ -86,7 +96,6 @@ var getSharedCalendarData = function(url) {
 	var url = " ";
 };
 
-
 function getUrlMaster(){
   var master = Alloy.Collections.instance('master');
   master.fetch();
@@ -99,4 +108,38 @@ function getUrlMaster(){
     var url = masterjson[i].col2+"?access_token="+googleAuthCalendar.getAccessToken();
     getSharedCalendarData(url);
   }
+}
+
+var sample = {
+ "start": {
+  "dateTime": "2015-02-13T07:40:00-06:00"
+ },
+ "location": "New Berlin",
+ "end": {
+  "dateTime": "2015-02-13T07:45:00-06:00"
+ }
+};
+
+function postCreateEvent() {
+	//var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net%40gmail.com/events?access_token='+googleAuthCalendar.getAccessToken();
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net@gmail.com/events';
+	var event = '\{\"start\": \{ \"dateTime\": \"2015-02-14T07:40:00-06:00\"\},\"location\": \"New Berlin\",\"end\": \{\"dateTime\": \"2015-02-14T07:45:00-06:00\"\} \}';
+	var xhr =  Titanium.Network.createHTTPClient({
+    onload: function() {
+    	try {
+    		Ti.API.info(this.responseText); 
+    	} catch(e){
+    		Ti.API.info("cathing e: "+JSON.stringify(e));
+    	}     
+    },
+    onerror: function(e) {
+    	Ti.API.info("error e: "+JSON.stringify(e));
+        alert("Danger, Will Robinson!"); 
+    }
+});
+	xhr.open("POST", "https://www.googleapis.com/calendar/v3/calendars/idevice.net%40gmail.com/events");
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.setRequestHeader("Authorization", 'Bearer '+googleAuthCalendar.getAccessToken());
+	xhr.send(event);
+	Ti.API.info('done POSTed');
 }
