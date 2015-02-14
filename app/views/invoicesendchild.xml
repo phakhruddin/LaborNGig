@@ -1,0 +1,4 @@
+<Alloy>
+  <Window id="invoicesendchild_window" backgroundImage="bg-black1.png"  title="invoicesend send view">
+  </Window>
+</Alloy>

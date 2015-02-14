@@ -12,6 +12,9 @@
 		  	<Label id="invoicelist_label" color="#EEE8AA" top="5" left="50" text="List invoices >"/>
 		  </TableViewRow>
 		  <TableViewRow id="dummy_row" backgroundColor="transparent" opacity="0"/>
+		  <TableViewRow id="invoicesend_row" backgroundColor="transparent" opacity="0" Title="invoice Send">
+		  	<Label id="invoicesend_label" color="#EEE8AA" top="5" left="50" text="Send Invoice >"/>
+		  </TableViewRow>
 	  </TableView>
   </Window>
     </Tab>

@@ -20,6 +20,13 @@ $.invoiceenter_row.addEventListener("click", function(e){
 		clientController.openMainWindow($.tab_invoice);
 });
 
+$.invoicesend_row.addEventListener("click", function(e){
+		Alloy.Globals.openDetail(e);
+		var title = e.row.title;
+		var clientController = Alloy.createController('invoicesend');
+		clientController.openMainWindow($.tab_invoice);
+});
+
 /*
 function transformFunction(model) {
 	var transform = model.toJSON();
