@@ -512,3 +512,67 @@ Alloy.Globals.checkNetworkAndGoogleAuthorized = function(sid){
 	xhr.open("GET", url);
 	xhr.send();
 };
+
+Alloy.Globals.postCreateEvent = function(startdateTime,enddateTime,location,summary,description,organizerdisplayName,organizeremail,colorid,attendeeslist) {
+	var startdateTime = startdateTime || "2015-02-14T15:30:00-06:00";
+	var enddateTime = enddateTime || "2015-02-14T15:40:00-06:00";
+	var location = location || "2258 S Sanctuary Dr., New Berlin, WI 53151";
+	var summary = summary || "Dave Danish LawnMowing";
+	var description = description || "client: Deb Smith house";
+	var organizerdisplayName = organizerdisplayName|| "Eric Cole";
+	var organizeremail = organizeremail || "phakhruddin1@gmail.com";
+	var colorid = colorid || "3";
+	var organizerself ="true";
+	//var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net%40gmail.com/events?access_token='+googleAuthCalendar.getAccessToken();
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net@gmail.com/events';
+	var recurrences ="";
+	var attendeesstrbody = [];
+	var attendeesstrstart = '\"attendees\": \[';
+	var attendeesstrend = "\],";
+	//var attendeeslist = "";
+	var attendeeslist = ["phakhruddin1@gmail.com","deen@idevice.net"];
+	if (attendeeslist.length>0){
+		for (i=0;i<attendeeslist.length;i++) {	
+			var attendeesstr = '\{ \"email\": \"'+attendeeslist[i]
+			+'\", \"responseStatus\" : \"needsAction\"\}';	
+			attendeesstrbody.push(attendeesstr);
+		}
+		var eventattendees = attendeesstrstart+""+attendeesstrbody+""+attendeesstrend;
+	} else {
+		var eventattendees = "";
+	}
+	var event = '\{'
+	+'\"start\": \{ \"dateTime\": \"'+startdateTime+'\"\},'
+	+'\"location\": \"'+location+'\",'
+	+'\"end\": \{\"dateTime\": \"'+enddateTime+'\"\},'
+	+'\"summary\": \"'+summary+'\",'
+	+'\"description\": \"'+description+'\",'
+	+'\"colorid\": \"'+colorid+'\",'
+	+eventattendees
+	+'\"organizer\": \{'
+	+	'\"email\": \"'+organizeremail+'\",'
+	+	'\"displayName\": \"'+organizerdisplayName+'\",'
+	+	'\"self\": \"'+organizerself+'\"'
+	+	'\}'	
+	+recurrences
+	+'\}';
+	console.log("event strings are: "+event);
+	var xhr =  Titanium.Network.createHTTPClient({
+    onload: function() {
+    	try {
+    		Ti.API.info(this.responseText); 
+    	} catch(e){
+    		Ti.API.info("cathing e: "+JSON.stringify(e));
+    	}     
+    },
+    onerror: function(e) {
+    	Ti.API.info("error e: "+JSON.stringify(e));
+        alert("Danger, Will Robinson!"); 
+    }
+});
+	xhr.open("POST", url);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.setRequestHeader("Authorization", 'Bearer '+Alloy.Globals.googleAuthSheet.getAccessToken());
+	xhr.send(event);
+	Ti.API.info('done POSTed');
+};

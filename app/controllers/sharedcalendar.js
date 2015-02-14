@@ -32,7 +32,8 @@ exports.openMainWindow = function(_tab) {
  	$.createevent.addEventListener('click', function() {
  		googleAuthCalendar.isAuthorized(function() {
 			console.log('Access Token on event creation: ' + googleAuthCalendar.getAccessToken());
-			postCreateEvent();
+			Alloy.Globals.postCreateEvent("2015-02-13T16:15:00-06:00","2015-02-13T16:20:00-06:00");
+			//postCreateEvent("2015-02-13T16:10:00-06:00","2015-02-13T16:15:00-06:00");
 		}, function() {
 			console.log('Authorized first before event creation, see next window: ');
 		});
@@ -120,10 +121,50 @@ var sample = {
  }
 };
 
-function postCreateEvent() {
+function postCreateEvent(startdateTime,enddateTime,location,summary,description,organizerdisplayName,organizeremail,colorid,attendeeslist) {
+	var startdateTime = startdateTime || "2015-02-14T15:30:00-06:00";
+	var enddateTime = enddateTime || "2015-02-14T15:40:00-06:00";
+	var location = location || "2258 S Sanctuary Dr., New Berlin, WI 53151";
+	var summary = summary || "Dave Danish LawnMowing";
+	var description = description || "client: Deb Smith house";
+	var organizerdisplayName = organizerdisplayName|| "Eric Cole";
+	var organizeremail = organizeremail || "phakhruddin1@gmail.com";
+	var colorid = colorid || "3";
+	var organizerself ="true";
 	//var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net%40gmail.com/events?access_token='+googleAuthCalendar.getAccessToken();
 	var url = 'https://www.googleapis.com/calendar/v3/calendars/idevice.net@gmail.com/events';
-	var event = '\{\"start\": \{ \"dateTime\": \"2015-02-14T07:40:00-06:00\"\},\"location\": \"New Berlin\",\"end\": \{\"dateTime\": \"2015-02-14T07:45:00-06:00\"\} \}';
+	var recurrences ="";
+	var attendeesstrbody = [];
+	var attendeesstrstart = '\"attendees\": \[';
+	var attendeesstrend = "\],";
+	//var attendeeslist = "";
+	var attendeeslist = ["phakhruddin1@gmail.com","deen@idevice.net"];
+	if (attendeeslist.length>0){
+		for (i=0;i<attendeeslist.length;i++) {	
+			var attendeesstr = '\{ \"email\": \"'+attendeeslist[i]
+			+'\", \"responseStatus\" : \"needsAction\"\}';	
+			attendeesstrbody.push(attendeesstr);
+		}
+		var eventattendees = attendeesstrstart+""+attendeesstrbody+""+attendeesstrend;
+	} else {
+		var eventattendees = "";
+	}
+	var event = '\{'
+	+'\"start\": \{ \"dateTime\": \"'+startdateTime+'\"\},'
+	+'\"location\": \"'+location+'\",'
+	+'\"end\": \{\"dateTime\": \"'+enddateTime+'\"\},'
+	+'\"summary\": \"'+summary+'\",'
+	+'\"description\": \"'+description+'\",'
+	+'\"colorid\": \"'+colorid+'\",'
+	+eventattendees
+	+'\"organizer\": \{'
+	+	'\"email\": \"'+organizeremail+'\",'
+	+	'\"displayName\": \"'+organizerdisplayName+'\",'
+	+	'\"self\": \"'+organizerself+'\"'
+	+	'\}'	
+	+recurrences
+	+'\}';
+	console.log("event strings are: "+event);
 	var xhr =  Titanium.Network.createHTTPClient({
     onload: function() {
     	try {
@@ -137,7 +178,7 @@ function postCreateEvent() {
         alert("Danger, Will Robinson!"); 
     }
 });
-	xhr.open("POST", "https://www.googleapis.com/calendar/v3/calendars/idevice.net%40gmail.com/events");
+	xhr.open("POST", url);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.setRequestHeader("Authorization", 'Bearer '+googleAuthCalendar.getAccessToken());
 	xhr.send(event);
