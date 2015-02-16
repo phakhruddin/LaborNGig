@@ -1,0 +1,32 @@
+<Alloy>
+	<Collection src="invoice"/>
+ <Tab id="tab_invoicelist" title="invoice">
+  <Window id="invoicelist_window" backgroundColor="white"  title="invoicelist List">
+	<ListView id="invoicelist_list" height="Ti.UI.Size" defaultItemTemplate="template">
+		<SearchBar barColor="#000" />
+		<HeaderView>
+                <View backgroundColor="#DDD" height="Ti.UI.SIZE">
+                    <Label>Invoices</Label>
+                </View>>
+            </HeaderView>
+		<Templates>
+			<ItemTemplate name="template" backgroundColor="white" height="60">
+				<Label id="label_header" color="#333"  left="20" top="10" bindId="info" onClick="doClick"/>
+				<Label id="label_sub1" color="#330"  left="20" top="30" bindId="total"/>
+				<Label  id="label_sub2" color="gray"  right="50" top="30" bindId="bal"/>
+				<Label  id="label_sub3" color="gray"  right="50" top="40" bindId="paid"/>
+			</ItemTemplate>
+		</Templates>
+		<ListSection id="invoicelist_section" headerTitle="Invoice List" dataCollection="invoice" dataTransform="transformFunction">
+			<ListItem info:text="{custom}" total:text="{total}" bal:text="{bal}" paid:text="{paid}"/>
+		</ListSection>
+   </ListView>
+       <View id="sortview" backgroundColor="#DDD" width="Ti.UI.SIZE" height="Ti.UI.SIZE">
+       	<Require src="button" label="ALL"/>
+		<Require src="button" label="PAID"/>
+		<Require src="button" label="PENDING"/>
+		<Require src="button" label="NONE"/>	
+    </View>
+  </Window>
+    </Tab>
+</Alloy>

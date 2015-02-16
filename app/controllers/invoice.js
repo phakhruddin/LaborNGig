@@ -9,7 +9,7 @@ exports.openMainWindow = function(_tab) {
 $.invoicelist_row.addEventListener("click", function(e){
 		Alloy.Globals.openDetail(e);
 		var title = e.row.title;
-		var clientController = Alloy.createController('invoicelist');
+		var clientController = Alloy.createController('invoicelistlist');
 		clientController.openMainWindow($.tab_invoice);
 });
 

@@ -1,6 +1,6 @@
 <Alloy>
   <Tab id="tab_enterdata">
-  <Window id="enterdata_window" backgroundImage="bg-black1.png" title="DATA">
+  <Window id="enterdata_window" backgroundColor="white" title="DATA">
 	  <TableView id="enterdata_table" backgroundColor="transparent" >
 		   <TableViewRow id="enterclient" backgroundColor="transparent" Title="Enter Client">
 		   		  <Label id="label_enterclient" color="#AFEEEE" top="5" left="50" text="Enter Clients Data >"/>

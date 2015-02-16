@@ -1,6 +1,6 @@
 <Alloy>
   <Tab id="tab_google">
-  <Window id="google_window" backgroundImage="bg-black1.png" title="google List">
+  <Window id="google_window" backgroundColor="white" title="google List">
 	  <TableView id="google_table" backgroundColor="transparent" >
 		  <TableViewRow id="sync" backgroundColor="transparent" opacity="0" color="white" Title="Google Sync">
 		  	<Label id="sync_label" color="yellow" top="5" left="50" text="Sync it"/>

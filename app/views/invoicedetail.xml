@@ -1,6 +1,6 @@
 <Alloy>
 	<Model src="dummy" />
-  <Window id="invoicedetail_window" title="invoice Detail" backgroundImage="bg-black1.png">
+  <Window id="invoicedetail_window" title="invoice Detail" backgroundColor="white">
 	  <TableView id="invoicedetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="invoiceDetails">
 		  <TableViewRow id="invoicenumber_row" Title="invoicenumber">
