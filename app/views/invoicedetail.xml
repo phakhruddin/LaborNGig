@@ -3,47 +3,30 @@
   <Window id="invoicedetail_window" title="invoice Detail" backgroundColor="white">
 	  <TableView id="invoicedetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="invoiceDetails">
-		  <TableViewRow id="invoicenumber_row" Title="invoicenumber">
-		  	  <Label id="invoicenumber" text="{dummy.invoicenumber}" />
-		  </TableViewRow>
-		  <TableViewRow id="fullname_row" Title="fullname">
-	   		  <Label id="fullname" text="{dummy.fullname}" />
-	   	  </TableViewRow>
-		  <TableViewRow id="customernumber_row" Title="customernumber">
-	   		  <Label id="customernumber" text="{dummy.customernumber}" />
-	   	  </TableViewRow>
-	   	  <TableViewRow id="phone_row" Title="phone">
-	   		  <Label id="phone" text="{dummy.phone}" />
-	   	  </TableViewRow>
-	   	  <TableViewRow id="emailinvoicedetail_row" Title="emailinvoiceDetail">
-	   		  <Label id="email" text="{dummy.email}" />
+		  <TableViewRow id="invoicenumber_row" Title="Summary" height="100">
+		  	  <Label id="header" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="10" text="Invoice#: {dummy.invoicenumber}" />
+	   		  <Label id="header" color="#333" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" top="35" text="{dummy.fullname}" />
+	   		  <Label id="customernumber" color="gray" left="10" top="65" text="Customer#: {dummy.customernumber}" />
 	   	  </TableViewRow>
 	  </TableViewSection>
-	  <TableViewSection headerTitle="Pending Invoice">
-	  	  <TableViewRow id="total_row" Title="total">
-	   		  <Label id="total" text="{dummy.total}" />
-		  </TableViewRow>
-		  <TableViewRow id="balance_row" Title="balance">
-	   		  <Label id="balance" text="{dummy.balance}" />
-		  </TableViewRow>
-		  <TableViewRow id="paid_row" Title="paid">
-	   		  <Label id="paid" text="{dummy.paid}" />
+	  <TableViewSection headerTitle="Details">
+	  	<TableViewRow id="totalbalance_row" height="80">
+	   		  <Label id="total" color="gray"  left="10" top="10" text="{dummy.total}" />
+	   		  <Label id="balance" color="gray"   left="10" top="30" text="{dummy.balance}" />
+	   		  <Label id="paid" color="gray"  left="10" top="50" text="{dummy.paid}" />
+	   		  <Label id="duedate" color="gray" left="10" top="60"  text="{dummy.duedate}" />
 		  </TableViewRow>
 	  </TableViewSection>
 	  <TableViewSection headerTitle="Action">
-	  	  <TableViewRow id="duedate_row" Title="duedate">
-	   		  <Label id="duedate" text="{dummy.duedate}" />
+	  	  <TableViewRow id="duedate_row" Title="duedate" height="70">
+	   		  <Label id="phone" color="gray"  left="10" top="30" text="{dummy.phone}" />
+	   		  <Label id="email" color="gray" left="10" top="50" text="{dummy.email}" />
 		  </TableViewRow>
 		  <TableViewRow id="lastpaiddate_row" Title="lastpaiddate">
-	   		  <Label id="lastpaiddate" text="{dummy.lastpaiddate}" />
+	   		  <Label id="lastpaiddate" color="gray"  text="{dummy.lastpaiddate}" />
 		  </TableViewRow>
 		  <TableViewRow id="followupdate_row" Title="followupdate">
-	   		  <Label id="followupdate" text="{dummy.followupdate}" />
-		  </TableViewRow>
-	  </TableViewSection>
-	  <TableViewSection headerTitle="Notes">
-		  <TableViewRow id="notesdetail_row" Title="notesDetail">
-	   		  <Label id="notes" text="{dummy.notes}" />
+	   		  <Label id="followupdate" color="gray" text="{dummy.followupdate}" />
 		  </TableViewRow>
 	  </TableViewSection>
 	  </TableView>

@@ -29,4 +29,10 @@
 		fontSize: '30',
 		fontStyle: 'bold'
 	}
+},
+"#header": {
+	font: {
+		fontSize: '24',
+		fontStyle: 'bold'
+	}
 }
