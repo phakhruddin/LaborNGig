@@ -23,16 +23,38 @@ var phone = data[8];
 var email = data[9];
 var duedate = data[10];
 var notes = data[11];
+var status = data[12];
+var currency = data[14];
 
-someDummy.set('invoicenumber', invoicenumber);
+if (balance == 0){
+	$.phone_button.hide();
+	$.email_button.hide();
+	$.noaction_button.show();
+	$.followupdate.hide();
+	$.duedate.hide();
+	$.balance1.hide();
+	$.balance2.show();
+} else {
+	$.phone_button.show();
+	$.email_button.show();
+	$.noaction_button.hide();
+	$.followupdate.show();
+	$.duedate.show();
+	$.balance1.show();
+	$.balance2.hide();
+}
+
+someDummy.set('invoicenumber', 'Invoice#: '+invoicenumber);
 someDummy.set('fullname', fullname);
-someDummy.set('customernumber', customernumber);
-someDummy.set('phone', phone);
-someDummy.set('email', email);
-someDummy.set('total', total);
+someDummy.set('customernumber', 'Customer#: '+customernumber);
+someDummy.set('phone', '    phone: '+phone);
+someDummy.set('email', '    email: '+email);
+someDummy.set('total', 'Total: '+total);
 someDummy.set('balance', balance);
-someDummy.set('paid', paid);
-someDummy.set('lastpaiddate', lastpaiddate);
-someDummy.set('followupdate', followupdate);
-someDummy.set('duedate', duedate);
-someDummy.set('notes', notes);
+someDummy.set('paid', 'Paid: '+paid);
+someDummy.set('lastpaiddate', 'Last paid date: ' +lastpaiddate);
+someDummy.set('followupdate', 'Follow-up date: '+followupdate);
+someDummy.set('duedate','Due date: ' +duedate);
+someDummy.set('notes', 'Notes: '+notes);
+someDummy.set('status', 'Status: '+status);
+someDummy.set('currency', currency);
