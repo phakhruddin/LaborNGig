@@ -34,8 +34,8 @@ $.client.addEventListener ("click", function(e){
 
 $.invoice.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	var item = e.row.id;
-	openNextTab(item);
+	var scheduleController = Alloy.createController("invoicelistlist");
+ 	scheduleController.openMainWindow($.tab_one);
 });
 
 $.supplier.addEventListener ("click", function(e){

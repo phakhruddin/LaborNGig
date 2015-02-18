@@ -57,7 +57,7 @@ function doClick(e) {
 		clientController.openMainWindow($.tab_invoicelist);
 	//alert("click this");
 };
-
+/*
 $.sortview.addEventListener("click", function(e){
 	console.log("JSON stringify e : " +JSON.stringify(e));
 	console.log("JSON stringify e.source : " +JSON.stringify(e.source));
@@ -69,11 +69,32 @@ $.sortview.addEventListener("click", function(e){
 	Ti.App.Properties.setString("sorttype",sorttype);
 	Alloy.Collections.invoice.fetch();
 });
+*/
+
+function buttonAction(e){
+	console.log("JSON stringify e : " +JSON.stringify(e));
+	console.log("JSON stringify e.source : " +JSON.stringify(e.source));
+	var thesort = e.source.title;
+	if (thesort == "All") { var sorttype = "All"; };
+	if (thesort == "Paid") { var sorttype = "paid"; };
+	if (thesort == "Owed") { var sorttype = "owed"; };
+	if (thesort == "None") { var sorttype = "\*"; };
+	Ti.App.Properties.setString("sorttype",sorttype);
+	Alloy.Collections.invoice.fetch();
+}
 
 function addHandler(e){
-	console.log("addHandle e "+JSON.stringify(e));
+	console.log("addHandler e "+JSON.stringify(e));
+		var clientController = Alloy.createController('enterinvoice');
+		clientController.openMainWindow($.tab_invoicelist);
 }
 
 function searchHandler(e){
 	console.log("searchHandler e "+JSON.stringify(e));
+}
+
+function mailAction(e) {
+	console.log("JSON stringify e : " +JSON.stringify(e));
+			var clientController = Alloy.createController('invoicesend');
+		clientController.openMainWindow($.tab_invoicelist);
 }

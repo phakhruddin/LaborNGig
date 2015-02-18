@@ -30,12 +30,24 @@
                 </View>>
             </FooterView>
    </ListView>
-       <View id="sortview" backgroundColor="#DDD" width="Ti.UI.SIZE" height="Ti.UI.SIZE">
+       <!--View id="sortview" backgroundColor="#DDD" width="Ti.UI.SIZE" height="Ti.UI.SIZE">
        	<Require src="button" label="All"/>
 		<Require src="button" label="Paid"/>
 		<Require src="button" label="Owed"/>
 		<Require src="button" label="None"/>	
-    </View>
+    </View-->
+          <Toolbar id="sortview" platform="ios" bottom="0" borderTop="true" borderBottom="false">
+            <Items >
+            	<FlexSpace/>
+            	<Button systemButton="COMPOSE" onClick="mailAction"/>
+            	<FlexSpace/>
+            	<Button id="All" title="All" style="Ti.UI.iPhone.SystemButtonStyle.PLAIN" onClick="buttonAction" />
+            	<Button id="Paid"  title="Paid" style="Ti.UI.iPhone.SystemButtonStyle.PLAIN" onClick="buttonAction"  />            	
+            	<Button id="Owed"  title="Owed" style="Ti.UI.iPhone.SystemButtonStyle.PLAIN" onClick="buttonAction"  />
+            	<FlexSpace/>
+            </Items>
+        </Toolbar>
+
   </Window>
     </Tab>
 </Alloy>
