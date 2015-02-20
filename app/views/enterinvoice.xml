@@ -1,50 +1,45 @@
 <Alloy>
   <Window id="enterinvoice_window"backgroundColor="white" title="Invoice Entry">
+  	<RightNavButton platform="ios">
+	   <Button systemButton="Ti.UI.iPhone.SystemButton.SAVE" onClick="saveHandler" /> 
+	</RightNavButton>
 	  <TableView id="enterinvoice_table" backgroundColor="transparent" >
-	  		  	<TableViewRow id="titleinvoiceinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client Invoice">
-	  		<Label id="titleinvoiceinput_label" color="#333" top="5" left="50" text="Enter invoice detail below"/>
+	  	  <TableViewRow id="titleinvoiceinput" borderColor="white" backgroundColor="#3B708A" height="20" opacity="0" Title="Client Details:">
+	  		<Label id="titleinvoiceinput_label" color="white" left="20" text="Client Details:"/>
 	  		</TableViewRow>
-		  <TableViewRow id="clientfirstnameinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client FirstName">
-		  	<TextField id="clientfirstname_tf"></TextField>
-			<Button id="save_clientfirstname_button"></Button>
+		  <TableViewRow id="clientdetail_row" backgroundColor="transparent" opacity="0" height="180" color="#333">
+		  	<Label id="tflabel" top="10">Firstname: </Label>
+		  	<TextField  top="12" id="clientfirstname_tf"/>
+		  	<Label id="tflabel" top="30">Lastname: </Label>
+		  	<TextField top="32"  id="clientlastname_tf"></TextField>
+		  	<Label id="tflabel" top="50">Phone: </Label>
+		  	<TextField top="52" id="clientphone_tf"></TextField>
+		  	<Label id="tflabel" top="70">Email: </Label>
+		  	<TextField top="72" id="clientemail_tf"></TextField>
+		  	<Label id="tflabel" top="90">Street addr: </Label>
+		  	<TextField   top="92" id="clientstreetaddress_tf"></TextField>
+		  	<Label id="tflabel" top="110">City: </Label>
+		  	<TextField  top="112" id="clientcity_tf"></TextField>
+		  	<Label id="tflabel" top="130">State: </Label>
+		  	<TextField  top="132" id="clientstate_tf"></TextField>
+		  	<Label id="tflabel" top="150">Street addr: </Label>
+		  	<TextField  top="152" id="clientcompany_tf"></TextField>
 		  </TableViewRow>
-		  <TableViewRow id="clientlastnameinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client lastname">
-		  	<TextField id="clientlastname_tf"></TextField>
-			<Button id="save_clientlastname_button"></Button>
+		  <TableViewRow id="itemline_row" height="20" borderColor="white" backgroundColor="#3B708A" color="white" title="Item Details:"/>
+		  <TableViewRow id="itemdetail_row" height="60">
+		  	<Label id="tflabellist" top="10" text="item 1 :"/>
+		  	<TextField id="itemlist_tf" left="80" top="12" keyboardType="Ti.UI.KEYBOARD_NUMBER_PAD" ></TextField>	
+		  	<Label id="tflabelqty" top="30" text="qty : "/>
+		  	<TextField id="itemqty_tf" top="32" left="60" hintText="2" width="40" keyboardType="Ti.UI.KEYBOARD_NUM_PAD"></TextField>	
+		  	<Label id="tflabelprice" left="150" top="30" text="price : "/>
+		  	<TextField id="itemprice_tf" left="200" top="32" width="100" hintText="120"></TextField>
+		  	<Button id="addrow_button" image="light_add.png" height="15" width="15" right="20" onClick="addItem" />		  	
 		  </TableViewRow>
-		  <TableViewRow id="clientphoneinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client phone">
-		  	<TextField id="clientphone_tf"></TextField>
-			<Button id="save_clientphone_button"></Button>
+		  <TableViewRow id="itemline_row" height="2" borderColor="white" backgroundColor="#3B708A" />
+		  <TableViewRow id="totalrow" backgroundColor="transparent" right="50" opacity="0" color="#333" Title="Total: ">
+		  	<Label id="totallabel" left="150" text="total :"/>
+		  	<Label id="totalvalue" left="200" text="100"/>
 		  </TableViewRow>
-		  <TableViewRow id="clientemailinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client email">
-		  	<TextField id="clientemail_tf"></TextField>
-			<Button id="save_clientemail_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="clientstreetaddressinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client streetaddress">
-		  	<TextField id="clientstreetaddress_tf"></TextField>
-			<Button id="save_clientstreetaddress_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="clientcityinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client city">
-		  	<TextField id="clientcity_tf"></TextField>
-			<Button id="save_clientcity_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="clientstateinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client state">
-		  	<TextField id="clientstate_tf"></TextField>
-			<Button id="save_clientstate_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="clientprojectinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client project">
-		  	<TextField id="clientproject_tf"></TextField>
-			<Button id="save_clientproject_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="clientcompanyinput" backgroundColor="transparent" opacity="0" color="#333" Title="Client company">
-		  	<TextField id="clientcompany_tf"></TextField>
-			<Button id="save_clientcompany_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="submitinput" backgroundColor="transparent" opacity="0" color="#333" Title="Submit">
-			<Button id="submit_button"></Button>
-		  </TableViewRow>
-		  <TableViewRow id="enterclient_row" backgroundColor="transparent" opacity="0" Title="enterclient"/>
-
 	  </TableView>
   </Window>
 </Alloy>

@@ -32,10 +32,16 @@ $.client.addEventListener ("click", function(e){
 	openNextTab(item);
 });
 
-$.invoice.addEventListener ("click", function(e){
+$.invoicelistlist.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
-	var scheduleController = Alloy.createController("invoicelistlist");
+
+ 		var item = 'invoice';
+ 			var sid = Titanium.App.Properties.getString(item,"none");
+	Ti.API.info("sid for "+ item +" : "+sid);
+	Alloy.Globals.getPrivateData(sid,item);
+		var scheduleController = Alloy.createController("invoicelistlist");
  	scheduleController.openMainWindow($.tab_one);
+	//openNextTab(item);
 });
 
 $.supplier.addEventListener ("click", function(e){

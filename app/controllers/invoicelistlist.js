@@ -85,6 +85,8 @@ function buttonAction(e){
 
 function addHandler(e){
 	console.log("addHandler e "+JSON.stringify(e));
+	    //reset the item counter
+	    Titanium.App.Properties.setInt('count',0);
 		var clientController = Alloy.createController('enterinvoice');
 		clientController.openMainWindow($.tab_invoicelist);
 }
