@@ -1,11 +1,9 @@
-"Label": {
-	width: Ti.UI.SIZE,
-	height: Ti.UI.SIZE,
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	color: "#D8D8BF",
-	font: {
-        fontFamily:'Helvetica',
-        fontWeight: 'normal'	}
+"Label" :{
+	color: "#3B708A",
+	left: "20",
+		font:{
+		fontSize : "14"
+	}
 },
 "Window": {
 	backgroundColor: "transparent",

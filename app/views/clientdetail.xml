@@ -3,20 +3,19 @@
   <Window id="clientdetail_window" title="Client Detail" backgroundColor="white">
 	  <TableView id="clientdetail_table"  backgroundColor="transparent">
 	  	<TableViewSection headerTitle="ContactDetails">
-		  <TableViewRow id="clientdetail_row" Title="ClientDetail">
-		  	  <Label id="FullName" text="{dummy.fullname}" />
-		  </TableViewRow>
-		  <TableViewRow id="phoneclientdetail_row" Title="PhoneClientDetail">
-	   		  <Label id="phone" text="{dummy.phone}" />
-	   	  </TableViewRow>
-	   	  <TableViewRow id="addressclientdetail_row" Title="addressClientDetail">
-	   		  <Label id="address" text="{dummy.address}" />
-	   	  </TableViewRow>
-	   	  <TableViewRow id="emailclientdetail_row" Title="emailClientDetail">
-	   		  <Label id="email" text="{dummy.email}" />
-	   	  </TableViewRow>
-	   	  <TableViewRow id="companyclientdetail_row" Title="companyClientDetail">
-	   		  <Label id="company" text="{dummy.company}" />
+		  <TableViewRow id="clientdetail_row" backgroundColor="transparent" opacity="0" height="200" color="#333">
+		  	  <Label id="Firstname" text="Firstname:" left="20" top="10"/>
+		  	  <Label id="Firstname" text="{dummy.firstname}" left="120" top="10"/>
+		  	  <Label id="Lastname" text="Lastname:" left="20" top="30"/>
+		  	  <Label id="Lastname" text="{dummy.lastname}" left="120" top="30"/>
+		  	  <Label id="phone" text="Phone:" left="20" top="50"/>
+	   		  <Label id="phone" text="{dummy.phone}" left="120" top="50"/>
+	   		  <Label id="email" text="Email:" left="20" top="70"/>
+	   		  <Label id="email" text="{dummy.email}" left="120" top="70"/>
+	   		  <Label id="fulladdress" text="Address:" left="20" top="90" />
+	   		  <Label id="fulladdress" text="{dummy.fulladdress}" left="120" top="90" />
+	   		  <Label id="company" text="Company:" left="20" top="130"/>
+	   		  <Label id="company" text="{dummy.company}" left="120" top="130"/>
 		  </TableViewRow>
 	  </TableViewSection>
 	  <TableViewSection headerTitle="Pending Invoice">

@@ -7,9 +7,6 @@
 "#clientlastname_tf[platform=android]" : {
 		height:Ti.UI.SIZE ,
 },
-"#clientphone_tf[platform=android]" : {
-		height:Ti.UI.SIZE ,
-},
 "#clientemail_tf[platform=android]" : {
 		height:Ti.UI.SIZE ,
 },
@@ -42,7 +39,7 @@
 	}
 },
 "#itemline_row" : {
-		font:{
+	font:{
 		fontSize : "14"
 	}
 }

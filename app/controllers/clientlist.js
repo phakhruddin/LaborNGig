@@ -1,3 +1,4 @@
+var args = arguments[0] || {};
 exports.openMainWindow = function(_tab) {
   _tab.open($.clientlist_window);
   Ti.API.info("This is child widow client.js" +JSON.stringify(_tab));
@@ -7,7 +8,19 @@ exports.openMainWindow = function(_tab) {
 	Alloy.Collections.client.fetch();	
 };
 
-$.clientlist_window.addEventListener("click", function(e){
+
+console.log("args sourcecall is: " +args.sourcecall);
+if (args.sourcecall == "enterinvoice") {
+	$.clientlist_window.addEventListener("click", function(e){
+		Alloy.Globals.openDetail(e);
+		var title = e.row.title;
+		var clientController = Alloy.createController('enterinvoice',{
+			title: title
+		});
+		clientController.openMainWindow($.tab_clientlist);
+});
+} else {
+	$.clientlist_window.addEventListener("click", function(e){
 		Alloy.Globals.openDetail(e);
 		var title = e.row.title;
 		var clientController = Alloy.createController('clientdetail',{
@@ -15,7 +28,9 @@ $.clientlist_window.addEventListener("click", function(e){
 		});
 		clientController.openMainWindow($.tab_clientlist);
 		//Alloy.Globals.createController('clientdetail','tab_client')
-});
+	});
+}
+
 
 function transformFunction(model) {
 	var transform = model.toJSON();

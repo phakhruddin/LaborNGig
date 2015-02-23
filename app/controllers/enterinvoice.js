@@ -1,9 +1,11 @@
+var args = arguments[0] || {};
+Titanium.App.Properties.setString('selectclient',"false");
 exports.openMainWindow = function(_tab) {
   _tab.open($.enterinvoice_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
     Alloy.Globals.checkNetworkAndGoogleAuthorized('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');
 	//Alloy.Globals.checkGoogleisAuthorized();
-
+	
 	/*$.save_clientfirstname_button.addEventListener('click', function(_e) {
     $.clientfirstname_tf.blur();
     var clientfirstname = $.clientfirstname_tf.value;
@@ -74,10 +76,8 @@ $.enterinvoice_table.addEventListener('click', function(e){
 	console.log("JSON stringify after table row is clicked : " +JSON.stringify(e));
 });
 
-var count = 3;
+var count = 3; //row where line item is entered
 Titanium.App.Properties.setInt('count',count);
-
-
 
 function addItem(e,itemTextField){
 	var count = Titanium.App.Properties.getInt('count',3);
@@ -132,6 +132,9 @@ function addItem(e,itemTextField){
     	left: '60',
     	width: '40',
     	hintText: '1',
+    	width: '60',
+    	keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD,
+    	returnKeyType : Ti.UI.RETURNKEY_DONE,
     	font: {fontSize: '14'}
 		});
 	var itemLabelprice = Ti.UI.createLabel({
@@ -143,7 +146,6 @@ function addItem(e,itemTextField){
 		},
 		top: '30',
 		left: '150',
-		keyboardType: 'Ti.UI.KEYBOARD_NUM_PAD',
 		color: "#3B708A"
 		});
 	var itemTextFieldprice = Titanium.UI.createTextField({
@@ -152,12 +154,25 @@ function addItem(e,itemTextField){
        	top: '32',
 		left: '200',
 		hintText: '160',
-		keyboardType: 'Ti.UI.KEYBOARD_NUM_PAD',
+		width: '80',
+		keyboardType: Ti.UI.KEYBOARD_DECIMAL_PAD,
+		returnKeyType: Ti.UI.RETURNKEY_DONE, 
+		border: 1, 
+		width: 100,
     	font: {fontSize: '14'}
 		});
+	var toolbarDone = Ti.UI.createButton({systemButton: Titanium.UI.iPhone.SystemButton.DONE});
+	var flexSpace = Titanium.UI.createButton({systemButton : Titanium.UI.iPhone.SystemButton.FLEXIBLE_SPACE});
+	toolbarDone.addEventListener('click', function(){
+		itemTextFieldprice.blur();
+	});
+	itemTextFieldprice.keyboardToolbarColor = '#80c342';
+	itemTextFieldprice.keyboardToolbar = [flexSpace, toolbarDone];
 	// Defining new row
 	var newRow = Ti.UI.createTableViewRow({
-		height: '60'
+		height: '50',
+		borderColor : 'white',
+		backgroundColor : "white"
 	});
 	newRow.add(itemLabellist);
 	newRow.add(itemTextField);
@@ -177,7 +192,34 @@ function addItem(e,itemTextField){
  	Ti.API.info("clientproject entered in dyn field is: "+clientproject);
  	console.log("e JSON of textfield: "+JSON.stringify(_e));
  });
+ 
+ //blur all text field when touching window 
+ 	function allBlur(){
+ 		$.itemlist_tf.blur();
+	 	$.itemqty_tf.blur();
+	 	$.itemprice_tf.blur();
+	 	itemTextFieldqty.blur();
+	 	itemTextField.blur();
+	 	itemTextFieldprice.blur();
+ 	};
+	 $.itemline_row.addEventListener('click',function(e){
+	 	allBlur();
+	 });
+	 
+	 newRow.addEventListener('click',function(e){
+	 	allBlur();
+	 });
+	 
+	 $.clientdetail_row.addEventListener('click',function(e){
+	 	allBlur();
+	 });
+	 
+	 $.addrow_button.addEventListener('click',function(e){
+	 	allBlur();
+	 });
 	
+	//var textfield = Ti.UI.createTextField({keyboardType: Ti.UI.KEYBOARD_NUMBER_PAD, returnKeyType: Ti.UI.RETURNKEY_DONE, backgroundColor: '#262626', border: 1, width: 100});
+
 }
 
 $.itemlist_tf.addEventListener('blur', function(_e) {
@@ -189,8 +231,11 @@ $.itemlist_tf.addEventListener('blur', function(_e) {
  });
  
  var itemvalue =[];
+
  function saveHandler(){
+ 	var isSelectClientTrue = Titanium.App.Properties.getString('selectclient');
  	console.log("saving all data ");
+ 	console.log("isSelectClientTrue is:"+isSelectClientTrue);
  	var tabledata = [];	
  	for (i=0;i<$.enterinvoice_table.data[0].rowCount;i++) {		
  		console.log("children count : "	+$.enterinvoice_table.data[0].rows[i].children.length);
@@ -216,13 +261,29 @@ $.itemlist_tf.addEventListener('blur', function(_e) {
 		if (tabledata[i].data1 == "clientstate_tf") { var clientstate = tabledata[i].data2; };
 		if (tabledata[i].data1 == "clientcompany_tf") { var clientcompany = tabledata[i].data2; };
 		if (tabledata[i].data1 == "itemlist_tf") {  item.push({ descr:tabledata[i].data2 }); };
-		if (tabledata[i].data1 == "itemqty_tf") {  itemqty.push({ descr:tabledata[i].data2 }); };
-		if (tabledata[i].data1 == "itemprice_tf") {  itemprice.push({ descr:tabledata[i].data2 }); };
+		if (tabledata[i].data1 == "itemqty_tf") {  itemqty.push({ qty:tabledata[i].data2 }); };
+		if (tabledata[i].data1 == "itemprice_tf") {  itemprice.push({ price:tabledata[i].data2 }); };
+	}	
+	//console.log("checking clientfirstname ::: "+clientfirstname);
+	if (!clientfirstname) { //no entry done. Get from existing.
+		var someDummy = Alloy.Models.dummy;
+		var fullname = someDummy.get('fullname');
+		var clientfirstname = someDummy.get('firstname');
+		var clientlastname = someDummy.get('lastname');
+		var clientcompany = someDummy.get('company');
+		var clientphone = someDummy.get('phone');
+		var clientemail = someDummy.get('email');
+		var clientstreetaddress = someDummy.get('address');
+		var fulladdress = someDummy.get('fulladdress');
+		var clientcity = someDummy.get('city');
+		var clientstate = someDummy.get('state');
+		var country = someDummy.get('country');
+		console.log("after dummy  get, fullname is: "+fullname+" lastname is : "+clientlastname);	
 	}
 	console.log("item: "+JSON.stringify(item));
 	console.log("itemqty: "+JSON.stringify(itemqty));
 	console.log("itemprice: "+JSON.stringify(itemprice));
- };
+ }; 
  
  function submit() {		
  	var now = new Date();
@@ -266,6 +327,91 @@ $.itemlist_tf.addEventListener('blur', function(_e) {
 	Ti.API.info('done POSTed');
  }
  
+ $.enterinvoice_window.addEventListener('click',function(e){
+	 	$.itemlist_tf.blur();
+	 	$.itemqty_tf.blur();
+	 	$.itemprice_tf.blur();
+	 });
+	 
+ $.clientdetail_row.addEventListener('click',function(e){
+	 	allTFBlur();
+	 });
+ 
+  function allTFBlur(){
+ 		$.itemlist_tf.blur();
+	 	$.itemqty_tf.blur();
+	 	$.itemprice_tf.blur();
+ };
+ 
+ var addnewclientrow = [ $.existing, $.clientdetail_row, $.itemline_row, $.itemdetail_row, $.addrow_row, $.itemlineend_row,$.totalrow ];
+ var selectclientrow = [ $.existing, $.clientselect_row, $.itemline_row, $.itemdetail_row, $.addrow_row, $.itemlineend_row,$.totalrow ];
+
+if (args.title) {
+	selectClient(args);
+	$.enterinvoice_table.setData(selectclientrow)	;
+} else {
+	$.enterinvoice_table.setData(addnewclientrow)	;
+	Titanium.App.Properties.setString('selectclient',"false");
+}
+
+function setClientExisting(args) {
+
+}
+
+function selectClient(args) {
+	Titanium.App.Properties.setString('selectclient',"true");
+	var someDummy = Alloy.Models.dummy;
+	console.log("stringify dummy :"+JSON.stringify(someDummy));
+	someDummy.set('id', '1234');
+	someDummy.fetch();
+	
+			var data = args.title.split(':');
+	var name = data[0];
+	var firstname = data[1];
+	var lastname = data[2];
+	var fullname = firstname+" "+lastname;
+	var company = data[3];
+	var phone = data[4];
+	var email = data[5];
+	var address = data[6];
+	var city = data[7];
+	var state = data[8];
+	var country = data[9];
+	var fulladdress = address+", "+city+". "+state+", "+country;
+	var invoice = data[10];
+	var project = data[11];
+	var proposal = data[12];
+	
+	console.log("dummy output is: "+fullname);
+	
+	someDummy.set('fullname', fullname);
+	someDummy.set('firstname', firstname);
+	someDummy.set('lastname', lastname);
+	someDummy.set('company', company);
+	someDummy.set('phone', phone);
+	someDummy.set('email', email);
+	someDummy.set('address', address);
+	someDummy.set('fulladdress', fulladdress);
+	someDummy.set('city', city);
+	someDummy.set('state', state);
+	someDummy.set('country', country);
+	someDummy.set('firstname', firstname);
+	someDummy.set('lastname', lastname);
+	someDummy.set('name', name);
+	someDummy.set('invoice', invoice);
+	someDummy.set('project', project);
+	someDummy.set('proposal', proposal);
+}
+
+$.check_client.addEventListener('click', function(e){
+	var clientController = Alloy.createController('clientlist',{
+			sourcecall: 'enterinvoice'
+		});
+	clientController.openMainWindow($.enterinvoice_tab);
+	
+});
+
+
  
 
 
