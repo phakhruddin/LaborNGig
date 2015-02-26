@@ -586,7 +586,8 @@ Alloy.Globals.postCreateEvent = function(startdateTime,enddateTime,location,summ
 };
 
 Alloy.Globals.uploadFile = function(file,filename) {
-    	var fileget = Ti.Filesystem.getFile(file);
+		var fileget = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,file);
+    	//var fileget = Ti.Filesystem.getFile(file);
 		var fileread = fileget.read();
 		var filebase64 = Ti.Utils.base64encode(fileread);
  		console.log('Access Token for File upload is: ' + googleAuthSheet.getAccessToken());

@@ -13,7 +13,8 @@ $.invoicesend_window.addEventListener("click", function(e){
 		console.log("title is: "+title);
 		emailpdf();
 		//var url = '../Documents/invoice.pdf';
-		var file = '../Documents/Expose.pdf';
+		//var file = '../Documents/Expose.pdf';
+		var file = 'Expose.pdf';
 		console.log("opening viewpdf(url) on "+file);
      	viewpdf(file);
      	Alloy.Globals.checkGoogleisAuthorized();
@@ -282,9 +283,8 @@ function viewpdf(url){
 	win.add(winButton);
 	
 	// Create a document viewer to preview a PDF file
-	docViewer = Ti.UI.iOS.createDocumentViewer({url:url});
-	// Opens the options menu and when the user clicks on 'Quick Look'
-	// the document viewer launches with an animated transition
+	var url = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,url);
+	docViewer = Ti.UI.iOS.createDocumentViewer({url:url.nativePath});
 	navButton.addEventListener('click', function(){
 	    //docViewer.show({view:navButton, animated: true});
 	    navWin.close();
