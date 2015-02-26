@@ -379,12 +379,19 @@ Alloy.Globals.xmlToJson = function(xml) {
 	return obj;
 };
 
+
+var scope = ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly','https://www.googleapis.com/auth/drive'];
+scope.push ("https://www.googleapis.com/auth/drive.appdata");
+scope.push ("https://www.googleapis.com/auth/drive.apps.readonly");
+scope.push ("https://www.googleapis.com/auth/drive.file");
+
 var GoogleAuth = require('googleAuth');
 var googleAuthSheet = new GoogleAuth({
 	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
 	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
 	propertyName : 'googleToken',
-	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	//scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly','https://www.googleapis.com/auth/drive'],
+	scope : scope,
 	quiet: false
 });
 
@@ -392,7 +399,8 @@ Alloy.Globals.googleAuthSheet = new GoogleAuth({
 	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
 	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
 	propertyName : 'googleToken',
-	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	//scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	scope : scope,
 	quiet: false
 });
 
@@ -400,7 +408,8 @@ Alloy.Globals.googleAuthCalendar = new GoogleAuth({
 	clientId : '306793301753-8ej6duert04ksb3abjutpie916l8hcc7.apps.googleusercontent.com',
 	clientSecret : 'fjrsVudiK3ClrOKWxO5QvXYL',
 	propertyName : 'googleToken',
-	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	//scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
+	scope : scope,
 	quiet: false
 });
 
@@ -448,8 +457,7 @@ Alloy.Globals.checkGoogleisAuthorized = function () {
 		console.log('Authorized first, see next window: ');
 		Alloy.Globals.LaunchWindowGoogleAuth();
 	});
-
-	};	
+};	
 	
 Alloy.Globals.updateSpreadsheet = function (sid){
 	 	var now = new Date();
@@ -575,4 +583,47 @@ Alloy.Globals.postCreateEvent = function(startdateTime,enddateTime,location,summ
 	xhr.setRequestHeader("Authorization", 'Bearer '+Alloy.Globals.googleAuthSheet.getAccessToken());
 	xhr.send(event);
 	Ti.API.info('done POSTed');
+};
+
+Alloy.Globals.uploadFile = function(file,filename) {
+    	var fileget = Ti.Filesystem.getFile(file);
+		var fileread = fileget.read();
+		var filebase64 = Ti.Utils.base64encode(fileread);
+ 		console.log('Access Token for File upload is: ' + googleAuthSheet.getAccessToken());
+ 		var parts = [];
+ 		var bound = 287032396531387;
+ 		var meta = '\{'
+ 		+	'\"title\": \"'+filename+'\"'
+		+	'\}';
+		var parts = [];
+        parts.push('--' + bound);
+        parts.push('Content-Type: application/json');
+        parts.push('');
+        parts.push(meta);
+        parts.push('--' + bound);
+		parts.push('Content-Type: application/pdf');
+        parts.push('Content-Transfer-Encoding: base64');
+        parts.push('');
+        parts.push(filebase64);
+        parts.push('--' + bound + '--');
+ 		var url = "https://www.googleapis.com/upload/drive/v2/files?uploadType=multipart";
+ 		var xhr =  Titanium.Network.createHTTPClient({
+		    onload: function() {
+		    	try {
+		    		Ti.API.info(this.responseText); 
+		    	} catch(e){
+		    		Ti.API.info("cathing e: "+JSON.stringify(e));
+		    	}     
+		    },
+		    onerror: function(e) {
+		    	Ti.API.info("error e: "+JSON.stringify(e));
+		        alert("unable to talk to the cloud, will try later"); 
+		    }
+		});
+		xhr.open("POST", url);
+		xhr.setRequestHeader("Content-type", "multipart/mixed; boundary=" + bound);
+		xhr.setRequestHeader("Authorization", 'Bearer '+googleAuthSheet.getAccessToken());
+		xhr.setRequestHeader("Content-Length", "2000000");
+		xhr.send(parts.join("\r\n"));
+		Ti.API.info('done POSTed');
 };

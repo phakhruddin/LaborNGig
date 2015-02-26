@@ -14,17 +14,17 @@
                 </View>>
             </HeaderView>
 		<Templates>
-			<ItemTemplate name="template" backgroundColor="white" height="60"  >
+			<ItemTemplate name="template" backgroundColor="white" height="60" onClick="selectItem" >
 				<Label id="label_header" color="#333"  left="20" top="10" bindId="info"/>
 				<Label id="label_sub1" color="#330"  left="20" top="30" bindId="total"/>
 				<Label  id="label_sub2" color="orange"  right="60" top="30" bindId="bal"/>
 				<Label  id="label_sub3" color="#333"  right="60" top="40" bindId="paid"/>
-				<ImageView bindId="img" id="icon" height="10" width="60" left="20" top="43" />
+				<ImageView bindId="img" id="icon" height="10" width="60" left="20" top="43"/>
 				<Button id="next_button" bindId="all" image="light_info.png" right="20" top="30" width="20" height="20" onClick="doClick"/>
 			</ItemTemplate>
 		</Templates>
 		<ListSection id="invoicelist_section" headerTitle="Invoice List" dataCollection="invoice" dataFilter="filterFunction" dataTransform="transformFunction">
-			<ListItem all:text="{title}" info:text="{custom}" total:text="{total}" bal:text="{bal}" paid:text="{paid}" status:text="{status}" img:image="{img}"/>
+			<ListItem id="invoice_listitem" all:text="{title}" info:text="{custom}" total:text="{total}" bal:text="{bal}" paid:text="{paid}" status:text="{status}" img:image="{img}"/>
 		</ListSection>
 			<FooterView>
                 <View backgroundColor="#DDD" height="50">
@@ -41,6 +41,7 @@
             <Items >
             	<FlexSpace/>
             	<Button systemButton="COMPOSE" onClick="mailAction"/>
+            	<Button systemButton="BOOKMARKS" onClick="uploadFile"/>
             	<FlexSpace/>
             	<Button id="All" title="All" style="Ti.UI.iPhone.SystemButtonStyle.PLAIN" onClick="buttonAction" />
             	<Button id="Paid"  title="Paid" style="Ti.UI.iPhone.SystemButtonStyle.PLAIN" onClick="buttonAction"  />            	
