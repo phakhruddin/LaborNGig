@@ -14,7 +14,7 @@
 		   <TableViewRow id="project" backgroundColor="transparent" Title="Project">
 		   		  <Label id="label_project" color="#008080" top="5" left="50" text="Projects >"/>
 		   </TableViewRow>
-		   <TableViewRow id="client" backgroundColor="transparent" Title="Clients">
+		   <TableViewRow id="clientlist" backgroundColor="transparent" Title="Clients">
 		   		  <Label id="label_clients" color="#228B22" top="5" left="50" text="Clients >"/>
 		   </TableViewRow>
 		   <TableViewRow id="invoicelistlist" backgroundColor="transparent" Title="Invoice">

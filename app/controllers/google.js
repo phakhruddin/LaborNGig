@@ -24,14 +24,17 @@ exports.openMainWindow = function(_tab) {
 	$.sheet.addEventListener('click', function() {
 		googleAuthSheet.isAuthorized(function() {
 			Ti.API.info('Access Token for SSheet: ' + googleAuthSheet.getAccessToken());
-			var url = 'https://spreadsheets.google.com/feeds/list/1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w/od6/private/full'
+			var url = 'https://spreadsheets.google.com/feeds/list/1ECkNoyzgeSu8WkVs3kBnlY8MjJRIAc787nVs6IJsA9w/od6/private/full';
 			googlegetData(url);		
 		}, function() {
 			//authorize first
+			googleAuthSheet.authorize();
+			/*
 			var win = Titanium.UI.createWindow({
 				fullscreen: false,
 				tabBarHidden : false,
 				navBarHidden: false,
+				height: "85%",
 				modal: true
 			});	
 			var btnBack = Ti.UI.createButton({ 
@@ -42,7 +45,8 @@ exports.openMainWindow = function(_tab) {
 	   		var win1 = Titanium.UI.iOS.createNavigationWindow({
 				Title: "Authentication",
 				backgroundColor: "transparent",
-		   	  	window: win
+		   	  	window: win,
+		   	  	height: "85%"
 	    	});
 	    	var view = Titanium.UI.createView({
 				   borderRadius:10,
@@ -56,10 +60,11 @@ exports.openMainWindow = function(_tab) {
 				win1.close();
 			});
 			Ti.API.info('Authorized first: ');
-			view.add(googleAuthSheet.authorize());			
-			win1.add(btnBack);
-			window.add(view);
-			win1.open({modal:true});			
+			//view.add(googleAuthSheet.authorize());							
+			win1.add(googleAuthSheet.authorize());
+			win1.add(btnBack);	
+			//window.add(view);
+			win1.open({modal:true});	*/		
 
 		});
 	});

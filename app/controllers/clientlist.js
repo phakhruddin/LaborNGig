@@ -36,7 +36,10 @@ function transformFunction(model) {
 	var transform = model.toJSON();
 	console.log("transform is ::" +JSON.stringify(transform));
 	transform.title = transform.col1+":"+transform.col2+":"+transform.col3+":"+transform.col4+":"+transform.col5+":"+transform.col6+":"+transform.col7+":"+transform.col8+":"+transform.col9+":"+transform.col10+":"+transform.col11+":"+transform.col12+":"+transform.col13+":"+transform.col14+":"+transform.col15+":"+transform.col16;
-	transform.custom = transform.col1+" ( "+transform.col2+"  "+transform.col3+" ) ";
+	transform.custom = transform.col2+"  "+transform.col3;
+	transform.phone = "Phone: "+transform.col5;
+	transform.email = "Email: "+transform.col6;
+	transform.address = "Address: "+transform.col7+","+transform.col8+","+transform.col9;
 	return transform;
 }
 
@@ -109,6 +112,14 @@ function menuItemSync_click() {
 			Ti.API.info('Authorize google account...');
 			googleAuth.authorize();
 		});
+}
+
+function addHandler(e) {
+	console.log("clientlist addHandler e : "+JSON.stringify(e));
+		//Alloy.Globals.openDetail(e);
+		//var title = e.row.title;
+		var clientController = Alloy.createController('enterclient');
+		clientController.openMainWindow($.tab_clientlist);
 }
 	
 	
