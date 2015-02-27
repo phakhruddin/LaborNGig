@@ -25,7 +25,7 @@ $.schedule.addEventListener ("click", function(e){
  	scheduleController.openMainWindow($.tab_one);
 });
  	
-$.clientlist.addEventListener ("click", function(e){
+$.client.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
 	Ti.API.info("e info : "+JSON.stringify(e));
 	var item = e.row.id;
