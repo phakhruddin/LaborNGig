@@ -18,24 +18,4 @@
 	},
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-},
-"#label_header": {
-	font: {
-		fontSize: "18"
-	}
-},
-"#label_sub1": {
-	font: {
-		fontSize: "10"
-	}
-},
-"#label_sub2": {
-	font: {
-		fontSize: "10"
-	}
-},
-"#label_sub3": {
-	font: {
-		fontSize: "10"
-	}
 }
