@@ -16,7 +16,7 @@ exports.definition = {
 		    "col13": "TEXT",
 		    "col14": "TEXT",
 		    "col15": "TEXT",
-		    "col16": "TEXT"
+		    "col16": "datem"
 		},
 		adapter: {
 			type: "sql",
