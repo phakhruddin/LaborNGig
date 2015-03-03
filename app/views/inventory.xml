@@ -1,11 +1,11 @@
 <Alloy>
-	<Collection src="inventory"/>
+  <Collection src="inventory"/>
   <Tab id="tab_inventory" title="inventory">
 	  <Window id="inventory_window" backgroundColor="white" title="inventory List">
 	  <RightNavButton platform="ios">
 	   <Button systemButton="Ti.UI.iPhone.SystemButton.ADD" onClick="addHandler" /> 
 	</RightNavButton>
-	  	<TableView id="inventory_table"  backgroundColor="transparent" dataCollection="client" search="search_history" dataTransform="transformFunction" filterAttribute="title">
+	  	<TableView id="inventory_table"  backgroundColor="transparent" dataCollection="inventory" search="search_history" dataTransform="transformFunction" filterAttribute="title">
 		  	<SearchBar id="search_history" height="43" />
 				<TableViewRow id="inventory_row" height="75" backgroundColor="transparent" opacity="0" color="transparent" title="{title}">
 					<Label id="label_header" color="#333" color="gray" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>

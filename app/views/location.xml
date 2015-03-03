@@ -1,5 +1,5 @@
 <Alloy>
- <Tab id="tab_two" title="LOC">
+ <Tab id="tab_two" title="LOCATE" icon="locateemployee.png">
   <Window id="location_window" backgroundColor="white" title="Location">
 	  <TableView id="location_table" backgroundColor="transparent">
 		  <TableViewRow id="updateloc" backgroundColor="transparent" opacity="0" Title="updateloc">

@@ -361,7 +361,7 @@ function setClientExisting(args) {
 function selectClient(args) {
 	Titanium.App.Properties.setString('selectclient',"true");
 	var someDummy = Alloy.Models.dummy;
-	console.log("stringify dummy :"+JSON.stringify(someDummy));
+	console.log("stringify dummy after selectClient :"+JSON.stringify(someDummy));
 	someDummy.set('id', '1234');
 	someDummy.fetch();
 	
@@ -404,7 +404,7 @@ function selectClient(args) {
 }
 
 $.check_client.addEventListener('click', function(e){
-	var clientController = Alloy.createController('clientlist',{
+	var clientController = Alloy.createController('client',{
 			sourcecall: 'enterinvoice'
 		});
 	clientController.openMainWindow($.enterinvoice_tab);

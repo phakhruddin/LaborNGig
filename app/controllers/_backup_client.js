@@ -8,14 +8,19 @@ exports.openMainWindow = function(_tab) {
 	Alloy.Collections.client.fetch();	
 };
 
+console.log("removing eventlistener for clientlist_window click");
+$.clientlist_window.removeEventListener("click");
 console.log("args sourcecall detected is: " +args.sourcecall);
-if (args.sourcecall) {
+if (args.sourcecall == 'enterinvoice') {
 	$.clientlist_window.addEventListener("click", function(e){
 		Alloy.Globals.openDetail(e);
 		var title = e.row.title;
-		var clientController = Alloy.createController(args.sourcecall,{
+		console.log("START::calling back window of: "+args.sourcecall+" , on title: "+title);
+		var clientController = Alloy.createController('enterinvoice',{
 			title: title
 		});
+		console.log("END::calling back window of: "+args.sourcecall+" , on title: "+title
+		+" , with details of clientController : "+JSON.stringify(clientController));
 		clientController.openMainWindow($.tab_clientlist);
 });
 } else {

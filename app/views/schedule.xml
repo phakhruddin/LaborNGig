@@ -1,6 +1,6 @@
 <Alloy>
 	<Model src="labor"/>
-	<Tab id="schedule_tab">
+	<Tab id="schedule_tab" title="SCHEDULE" icon="calendar.png">
   <Window id="schedule_window" backgroundColor="white" title="Calendar">
 	  <TableView id="table" backgroundColor="transparent"  >
 		  <TableViewRow id="events" backgroundColor="transparent" opacity="0" Title="events">

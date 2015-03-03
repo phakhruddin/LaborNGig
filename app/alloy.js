@@ -201,7 +201,7 @@ Alloy.Globals.CheckLoc = function(){
 Alloy.Globals.openDetail = function(e){
 	Ti.API.info('all info = ' + JSON.stringify(e));
 	Ti.API.info('index = ' + JSON.stringify(e.index));
-	Ti.API.info("in open_button click event title :"+e.row.Title);
+	Ti.API.info("in open_button click event title :"+e.row.title);
 };
 
 Alloy.Globals.getData = function(sid,type) {	
