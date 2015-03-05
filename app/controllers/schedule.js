@@ -650,12 +650,17 @@ function sharedCalendar() {
 function transformFunction(model) {
 	var transform = model.toJSON();
 	console.log("transform is ::" +JSON.stringify(transform));
-	transform.title = transform.col1+":"+transform.col2+":"+transform.col3+":"+transform.col4+":"+transform.col5+":"+transform.col6+":"+transform.col7+":"+transform.col8+":"+transform.col9+":"+transform.col10+":"+transform.col11+":"+transform.col12+":"+transform.col13+":"+transform.col14+":"+transform.col15+":"+transform.col16;
+	transform.title = transform.col1+":"+transform.col2+":"+transform.col3+":"+transform.col4+":"+transform.col5+":"+transform.col6+":"+transform.col7+":"+transform.col8+":"+transform.col9+":"+transform.col10
+	+":"+transform.col11+":"+transform.col12+":"+transform.col13+":"+transform.col14+":"+transform.col15+":"+transform.col16;
+	var startdatetimeUTC = Date.parse(transform.col4);
+	var startdatetimeLocale = new Date(startdatetimeUTC);
+	var startdatetime = startdatetimeLocale.toString().replace(/GMT.*/," ");
+    console.log("col4: " +startdatetimeUTC+" : "+startdatetimeLocale); 
 	transform.custom = (transform.col1 == "none")?"No event title":transform.col1;
 	transform.name = (transform.col2 == "none")?"":transform.col2;
 	transform.item = (transform.col3 == "none")?"":'Address: '+transform.col3;
-	transform.start = (transform.col4 == "none")?"":'Start: '+transform.col4;
-	transform.end = (transform.col5 == "none")?"":'End: '+transform.col5;
+	transform.start = (transform.col4 == "none")?"":'Start: '+startdatetime;
+	transform.end = (transform.col5 == "none")?"":'End: '+(new Date(Date.parse(transform.col5))).toString().replace(/GMT.*/," ");
 	transform.email = (transform.col9 == "none")?"":'email : '+transform.col9;
 	if (transform.col15 == "submitted"){
 		transform.img ="proposalsubmitted.gif";
