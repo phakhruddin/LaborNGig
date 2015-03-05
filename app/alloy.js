@@ -19,6 +19,7 @@ var invoicesid = '1-Wz7Apn4AvVpfqcNyMgfqyKA8OAoLNy5Bl0d_jQ9IZk'; Titanium.App.Pr
 var inventorysid = '1zq6rj-qHxYUkHY1jK2k_25I8_xWYrVOowbsp6VblixA'; Titanium.App.Properties.setString('inventory',inventorysid);
 var proposalsid = '1H95ytL9cA1f3YU1Hag4GAtMUV98NyBcYqzyP04BDSwk'; Titanium.App.Properties.setString('proposal',proposalsid);
 var mastersid = '1WUtkBcD1q3ezozI98w0sq42rl1TwIOTMq25Yayj-sEk'; Titanium.App.Properties.setString('master',mastersid);
+var schedulesid = '1c5Nj6XOMIEtlqmHLDoyGocdNu5MRG-WQhckIseVlU2I'; Titanium.App.Properties.setString('schedule',schedulesid);
 
 
 
@@ -524,8 +525,8 @@ Alloy.Globals.checkNetworkAndGoogleAuthorized = function(sid){
 };
 
 Alloy.Globals.postCreateEvent = function(startdateTime,enddateTime,location,summary,description,organizerdisplayName,organizeremail,colorid,attendeeslist) {
-	var startdateTime = startdateTime || "2015-02-14T15:30:00-06:00";
-	var enddateTime = enddateTime || "2015-02-14T15:40:00-06:00";
+	var startdateTime = startdateTime || "2015-03-05T15:30:00-06:00";
+	var enddateTime = enddateTime || "2015-03-05T15:40:00-06:00";
 	var location = location || "2258 S Sanctuary Dr., New Berlin, WI 53151";
 	var summary = summary || "Dave Danish LawnMowing";
 	var description = description || "client: Deb Smith house";

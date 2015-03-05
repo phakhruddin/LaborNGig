@@ -1,7 +1,10 @@
 exports.openMainWindow = function(_tab) {
   _tab.open($.schedule_window);
   Ti.API.info("This is child widow schedule.js" +JSON.stringify(_tab));
+  $.schedule_table.search = $.search_history;
+  Alloy.Collections.schedule.fetch();	
   
+/*
   $.events.addEventListener ("click", function(e){
 		Ti.API.info('index = ' + JSON.stringify(e.index));
 		Ti.API.info("in open_button click event title :"+e.row.Title);
@@ -37,8 +40,8 @@ exports.openMainWindow = function(_tab) {
 				console.log('Authorized first, see next window: ');
 			});
 		Alloy.Globals.createController('sharedcalendar',$.schedule_tab);
-	});
- 
+	});*/
+
 };
 
   var osname = Ti.Platform.osname;
@@ -628,3 +631,133 @@ var googleAuthCalendar = new GoogleAuth({
 	scope : ['https://spreadsheets.google.com/feeds', 'https://docs.google.com/feeds','https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.readonly'],
 	quiet: false
 });
+
+function createEventFuture() {
+	Alloy.Globals.createController('createevent',$.schedule_tab);
+}
+
+function sharedCalendar() {
+	googleAuthCalendar;
+	console.log('Access Token for Calendar is: ' + googleAuthCalendar.getAccessToken());
+	googleAuthCalendar.isAuthorized(function() {
+		console.log('Access Token: ' + googleAuthCalendar.getAccessToken());
+	}, function() {
+		console.log('Authorized first, see next window: ');
+		});
+	Alloy.Globals.createController('sharedcalendar',$.schedule_tab);
+}
+
+function transformFunction(model) {
+	var transform = model.toJSON();
+	console.log("transform is ::" +JSON.stringify(transform));
+	transform.title = transform.col1+":"+transform.col2+":"+transform.col3+":"+transform.col4+":"+transform.col5+":"+transform.col6+":"+transform.col7+":"+transform.col8+":"+transform.col9+":"+transform.col10+":"+transform.col11+":"+transform.col12+":"+transform.col13+":"+transform.col14+":"+transform.col15+":"+transform.col16;
+	transform.custom = (transform.col1 == "none")?"No event title":transform.col1;
+	transform.name = (transform.col2 == "none")?"":transform.col2;
+	transform.item = (transform.col3 == "none")?"":'Address: '+transform.col3;
+	transform.start = (transform.col4 == "none")?"":'Start: '+transform.col4;
+	transform.end = (transform.col5 == "none")?"":'End: '+transform.col5;
+	transform.email = (transform.col9 == "none")?"":'email : '+transform.col9;
+	if (transform.col15 == "submitted"){
+		transform.img ="proposalsubmitted.gif";
+	} else {
+		transform.img ="proposalpending.gif";
+	}
+	return transform;
+}
+
+function filterFunction(collection) { 
+		var sorttype = Titanium.App.Properties.getString('sorttype'); 
+	    console.log("sorttype in filter : "+sorttype); 
+	    //console.log("JSON stringify collection: " +JSON.stringify(collection));
+	    if (sorttype == "All")  {
+	    	return collection.where({col4:"None"||"none"});
+	    } else {
+	    	return collection.where({col15: sorttype });
+	    }
+}
+
+function buttonAction(e){
+	console.log("JSON stringify e : " +JSON.stringify(e));
+	console.log("JSON stringify e.source : " +JSON.stringify(e.source));
+	var thesort = e.source.title;
+	if (thesort == "All") { var sorttype = "All"; };
+	if (thesort == "Submitted") { var sorttype = "submitted"; };
+	if (thesort == "Pending") { var sorttype = "pending"; };
+	if (thesort == "None") { var sorttype = "\*"; };
+	Ti.App.Properties.setString("sorttype",sorttype);
+	Alloy.Collections.proposal.fetch();
+}
+
+function refreshCalendar() {
+	var account = 'idevice.net@gmail.com';
+	var url = 'https://www.googleapis.com/calendar/v3/calendars/'+account+'/events'+"?access_token="+googleAuthCalendar.getAccessToken();;
+	getSharedCalendarData(url);
+}
+
+
+var getSharedCalendarData = function(url) {	
+	Ti.API.info("URL is: "+url);
+	var thefile = "calendar.txt";
+	var data = [];
+	//Alloy.Globals.checkGoogleisAuthorized();
+	//Alloy.Globals.checkNetworkAndGoogleAuthorized('1gnkP116nsTVxtrw6d_mXVdOiesQEPH7LVUIyHUfx9EE');
+	googleAuthCalendar;
+	console.log('Access Token for Calendar is: ' + googleAuthCalendar.getAccessToken());
+	googleAuthCalendar.isAuthorized(function() {
+		console.log('Access Token: ' + googleAuthCalendar.getAccessToken());
+		
+		var xhr = Ti.Network.createHTTPClient({
+		    onload: function(e) {
+		    try {
+				console.log("response txt is: "+this.responseText);
+				var file = Ti.Filesystem.getFile(
+					Ti.Filesystem.tempDirectory, thefile
+				);
+				if(file.exists() && file.writeable) {
+				    var success = file.deleteFile();
+				    Ti.API.info((success==true) ? file.write(this.responseText) : 'fail'); // outputs 'success'
+					}	
+				// Updating calendar DB
+				var json = JSON.parse(this.responseText);
+				//var json = this.responseText;
+				Alloy.Collections.schedule.deleteAll();
+				for (var i=0; i < +json.items.length; i++) {
+					var dataModel = Alloy.createModel('schedule',{
+						col1 :  json.items[i].summary || "none",
+						col2 : json.items[i].description || "none",
+						col3 : json.items[i].location || "none",
+						col4 : json.items[i].start.dateTime || "none",
+						col5 : json.items[i].end.dateTime || "none",
+						col6 : json.items[i].status  || "none",
+						col7 : json.items[i].status || "none",
+						col8 : json.items[i].creator.displayName || "none",
+						col9 : json.items[i].creator.email || "none",
+						col10 :  json.items[i].creator.email || "none",
+						col11 : json.items[i].creator.email || "none",
+						col12 :  json.items[i].creator.email || "none",
+						col13 :  json.items[i].creator.email || "none",
+						col14 :  json.items[i].creator.email || "none",
+						col15 :  json.items[i].creator.email || "none",
+						col16 :  json.items[i].creator.email || "none",		
+					});			
+					dataModel.save();
+				}							
+				} catch(e){
+					Ti.API.info("cathing e: "+JSON.stringify(e));
+				}
+			}
+		});
+		xhr.onerror = function(e){
+			//alert(e);
+			alert("Unable to connect to the network. The info displayed here is NOT the latest.");
+			console.log("response txt after failure is: "+this.responseText);
+		};
+		xhr.open("GET", url);
+		xhr.send();
+		Ti.API.info(" Data were successfuly downloaded from "+url+". Please proceed.");
+		
+	}, function() {
+		console.log('Authorized first, see next window: ');
+	});
+	var url = " ";
+};

@@ -32,7 +32,7 @@ exports.openMainWindow = function(_tab) {
  	$.createevent.addEventListener('click', function() {
  		googleAuthCalendar.isAuthorized(function() {
 			console.log('Access Token on event creation: ' + googleAuthCalendar.getAccessToken());
-			Alloy.Globals.postCreateEvent("2015-02-13T16:15:00-06:00","2015-02-13T16:20:00-06:00");
+			Alloy.Globals.postCreateEvent("2015-03-05T16:15:00-06:00","2015-03-05T16:20:00-06:00");
 			//postCreateEvent("2015-02-13T16:10:00-06:00","2015-02-13T16:15:00-06:00");
 		}, function() {
 			console.log('Authorized first before event creation, see next window: ');

@@ -1,24 +1,34 @@
 <Alloy>
 	<Model src="labor"/>
+	<Collection src="schedule"/>
 	<Tab id="schedule_tab" title="SCHEDULE" icon="calendar.png">
   <Window id="schedule_window" backgroundColor="white" title="Calendar">
-	  <TableView id="table" backgroundColor="transparent"  >
-		  <TableViewRow id="events" backgroundColor="transparent" opacity="0" Title="events">
-		   		  <Label id="label_events" color="orange" top="5" left="50" text="Check Events >"/>
-		  </TableViewRow>
-		  <TableViewRow id="createevent" backgroundColor="transparent" opacity="0" Title="createevent">
-		   		  <Label id="label_createevent" color="orange" top="5" left="50" text="Create Event Now >"/>
-		  </TableViewRow>
-		  <TableViewRow id="createeventfuture" backgroundColor="transparent" opacity="0" Title="createevent">
-		   		  <Label id="label_createeventfuture" color="orange" top="5" left="50" text="Create Event >"/>
-		  </TableViewRow>
-		  <TableViewRow id="createmultipleevent" backgroundColor="transparent" opacity="0" Title="createmultipleevent">
-		   		  <Label id="label_createmultipleevent" color="orange" top="5" left="50" text="Create Multiple Event >"/>
-		  </TableViewRow>
-		  <TableViewRow id="sharedcalendar" backgroundColor="transparent" opacity="0" Title="sharedcalendar">
-		   		  <Label id="label_sharedcalendar" color="orange" top="5" left="50" text="Shared Calendar Event >"/>
-		  </TableViewRow>
-	  </TableView>
+  	<RightNavButton platform="ios">
+	   <Button title="Refresh" onClick="refreshCalendar" /> 
+	</RightNavButton>
+	  <TableView id="schedule_table" backgroundColor="transparent" dataCollection="schedule"  search="search_history" dataTransform="transformFunction" filterAttribute="title">
+			<SearchBar id="search_history" height="43" />
+		  <TableViewRow id="events_row" backgroundColor="transparent" height="75" opacity="0" color="white" title="{title}">
+			<Label id="label_header" color="#333" left="20"  color="gray" top="10" textAlign="Ti.UI.TEXT_ALIGNMENT_CENTER" text="{custom}"/>
+			<Label  id="label_sub3" color="#333" left="20" top="40" text="{start}"/>
+			<Label  id="label_sub3" color="#333" left="20" top="55" text="{end}"/>
+		</TableViewRow>
+	 </TableView>
+		<Toolbar id="sortview" platform="ios" bottom="0" borderTop="true" borderBottom="false">
+			<Items >
+				<FlexSpace/>
+					<Button top="1" title="Check Events" image="checkevent.png" onClick="CheckEvents"/>
+				<FlexSpace/>
+					<Button title="Now" onClick="CreateEvents"/>
+				<FlexSpace/>
+					<Button title="Future" onClick="createEventFuture"/>
+				<FlexSpace/>
+					<Button title="Multiple" onClick="multiplepicker"/>
+				<FlexSpace/>
+					<Button top="1" image="createevent.png" title="create event" onClick="sharedCalendar"/>
+				<FlexSpace/>
+			</Items>
+		</Toolbar>
   </Window>
  </Tab>
 </Alloy>

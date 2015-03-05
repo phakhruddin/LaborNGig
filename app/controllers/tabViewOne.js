@@ -21,8 +21,11 @@ $.project.addEventListener ("click", function(e){
 
 $.schedule.addEventListener ("click", function(e){
 	Alloy.Globals.openDetail(e);
+	var item = e.row.id;
+	openNextTab(item);
+	/*
 	var scheduleController = Alloy.createController("schedule");
- 	scheduleController.openMainWindow($.tab_one);
+ 	scheduleController.openMainWindow($.tab_one);*/
 });
  	
 $.client.addEventListener ("click", function(e){
